@@ -32,8 +32,8 @@ window.onload = (event) => {
 
 // LAST FM API KEY: 267c4bed17d4a2204fae1460444c4719
 // LAST FM SHARED SECRET: 35b8e24da5eb70b1dd4ecc53c9ec458e
-// Note: Last fm doesn't have artist images, but does have track search
-// https://ws.audioscrobbler.com/2.0/?method=artist.search&artist=cher&api_key=267c4bed17d4a2204fae1460444c4719&form
+// Note: Supports artist/album/track search, but only returns images for albums (not artists or tracks)
+// https://ws.audioscrobbler.com/2.0/?method=artist.search&artist=cher&api_key=267c4bed17d4a2204fae1460444c4719&format=json
 
 // DISCOGS API KEY: QBwPBLPvAdtskqAwbSsK
 // DISCOGS CONSUMER SECRET: nmYPiDDYBMOTqFCwRjAGZTWmCOTWWbKi
@@ -42,18 +42,24 @@ window.onload = (event) => {
 // Note: Discogs HAS artist images and albums/album art, but not track search
 // https://api.discogs.com/database/search?q=${artistSearch}&type=artist&key=${musicKey}&secret=${secretKey}
 
+// DEEZER API:
+// Reference: https://developers.deezer.com/api/search#connections
+// TRACK SEARCH: https://api.deezer.com/search/track?q=astrothunder
+// ARTIST SEARCH: https://api.deezer.com/search/artist?q=eminem
+// ALBUM SEARCH: https://api.deezer.com/search/album?q=graduation
+
 // SPOTIFY CLIENT ID: 06f3519a4bcf4ec4bade4bee2bff8ac9
 // SPOTIFY CLIENT SECRET: 1bbe650898604e4f856d09e1896382f9
 // Spotify is hard to login
 
 // MUSICBRAINZ 
-// Note: This one is strange
+// Note: does not return artist images
 // https://musicbrainz.org/ws/2/area/45f07934-675a-46d6-a577-6f8637a411b1?inc=aliases&fmt=json
 
-// DEEZER API:
-// Works best just to search for tracks, since it has built in track previews
-// https://api.deezer.com/search?q=track:%22god%27s+plan%22
 
+
+// APPLE MUSIC API
+// have to be 18+ to use
 
 const handleNoteSubmit = () => {
     setTimeout(function(){
@@ -61,28 +67,28 @@ const handleNoteSubmit = () => {
         const artistSearch = artistSearchSeperate.trim().split(' ').join('+')
         console.log(artistSearch);
 
-
-        const musicKey = 'QBwPBLPvAdtskqAwbSsK';
-        const secretKey = 'nmYPiDDYBMOTqFCwRjAGZTWmCOTWWbKi';
-        const artist = `https://api.discogs.com/database/search?q=${artistSearch}&type=artist&key=${musicKey}&secret=${secretKey}`;
+        const artist = `https://api.deezer.com/search/artist?q=${artistSearch}`;
+        
         console.log(artist);
 
-        fetch (artist) // Returns a promise, which resolved, are asynchronous
+
+        fetch(`https://cors-anywhere.herokuapp.com/${artist}`)
         .then(response => response.json())
         .then(data => {  
+            console.log("okay");
+            const allArtists = data.data;
 
-            const allArtists = data.results;
+            const artist1 = allArtists[0];
+            const artist1name = artist1.name;
+            const artist1pic = artist1.picture_xl;
 
-            const firstArtist = allArtists[0];
-            const firstArtistName = firstArtist.title;
-            const firstArtistImage = firstArtist.thumb;
 
-            console.log(allArtists);
-            console.log(firstArtistName, firstArtistImage);
+            console.log(artist1name, artist1pic);
         })
 
         .catch(err => {console.log(`Error: ${err}`);});
 
-        
     }, 50); 
 }
+
+
