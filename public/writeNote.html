@@ -45,21 +45,29 @@
 
             <!-- NOTE FORM -->
             <div class="column is-one-third has-text-left">
-              <div class="field">
-                <label class="label">Artist</label>
-                <div class="control">
-                  <input class="input is-medium" type="text" id="noteTitle">
+
+                
+                <div class="field">
+                    <label class="label">Artist</label>
+                    <div class="control">
+                        <input onInput="handleNoteSubmit()" class="input is-medium" type="text" id="noteTitle">
+                    </div>
                 </div>
-              </div>
+
+              <!--
               <div class="field">
                 <label class="label">Ignore this form for now.</label>
                 <div class="control">
                   <textarea class="textarea is-medium" id="noteText" disabled></textarea>
                 </div>
               </div>
-              <div class="control">
-                <button class="button is-link is-fullwidth has-text-weight-medium is-medium" onclick="handleNoteSubmit()">Create Note</button>
-              </div>
+                -->
+                
+                <div class="control">
+                    <!-- <button class="button is-link is-fullwidth has-text-weight-medium is-medium" onclick="handleNoteSubmit()">Create Note</button> -->
+                    <button class="button is-link is-fullwidth has-text-weight-medium is-medium">Create Note</button>
+
+                </div>
             </div>
             
 
