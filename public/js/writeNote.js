@@ -42,11 +42,6 @@ const createCard = (song, songId) => {
     return `
         <div class='column is-one-third'>
             <div class="card">
-
-                <header class="card-header">
-                    <p class="card-header-title">${song.songTitle}</p>
-                </header>
-
                 <div class="card-content">
                     <div class="content">${song.songTitle}</div>
                 </div>
@@ -86,11 +81,9 @@ const editNote = (songId) => {
         console.log(data)
 
         // Show the text from the database in an editable modal
-        document.querySelector("#editTitleInput").value = data.title;
-        document.querySelector("#editTextInput").value = data.text;
+        document.querySelector("#editRankingInput").value = data.songRanking;
+        document.querySelector("#editSongInput").value = data.songTitle;
     });
-
-
     // Save the updated text to the database
 
     // Hide the modal box once the user has made their changes
@@ -98,16 +91,27 @@ const editNote = (songId) => {
 };
 
 const saveEditedNote = () => {
-    const newTitle = document.querySelector("#editTitleInput").value;
-    const newNote = document.querySelector("#editTextInput").value;
-    firebase.database().ref(`users/${googleUserId}/${editedNoteId}`).update(
-        {
-            songTitle: newTitle,
-        }
-    );
+    if (confirm('Are you sure you want to change this note?')) {
+    // Save it!
+    const editedRanking = document.querySelector("#editRankingInput").value;
+    const editedSong = document.querySelector("#editSongInput").value;
+    firebase.database().ref(`users/${googleUserId}/${editedNoteId}`)
+        .update({
+            songRanking: editedRanking,
+            songTitle: editedSong
+        })
+    console.log('Thing was saved to the database.');
+    } else {
+    // Do nothing!
+    console.log('Thing was not saved to the database.');
+    }
     closeEditModal();
-};
+}
 
+const closeEditModal = () => {
+ const editNoteModal = document.querySelector("#editNoteModal");
+ editNoteModal.classList.toggle("is-active");
+};
 
 // const handleNoteSubmit = () => {
 //   // 1. Capture the form data
