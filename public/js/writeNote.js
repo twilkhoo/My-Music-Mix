@@ -1,4 +1,4 @@
-let googleUser;
+let googleUser, googleUserId, editedNoteId;
 
 
 window.onload = (event) => {
@@ -6,11 +6,106 @@ window.onload = (event) => {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log('Logged in as: ' + user.displayName);
-      googleUser = user;
+      googleUserId = user.uid;
+      getSongs(googleUserId);
     } else {
-      window.location = 'index.html'; // If not logged in, navigate back to login page.
+        // If not logged in, navigate back to login page.
+      window.location = 'index.html'; 
     }
   });
+};
+
+//Show song on page
+
+const getSongs = (userId) => {
+    const notesRef = firebase.database().ref(`users/${userId}`).orderByChild("songTitle");
+    console.log(notesRef);
+    notesRef.on('value', (snapshot) => {
+    const data = snapshot.val();
+    renderSongDataAsHtml(data);
+  });
+};
+
+const renderSongDataAsHtml = (data) => {
+  let cards = ``;
+  for(const songItem in data) {
+    const song = data[songItem];
+    // For each note create an HTML card
+    console.log(songItem)
+    cards += createCard(song, songItem)
+  };
+  // Inject our string of HTML into our viewNotes.html page
+  document.querySelector('#app').innerHTML = cards;
+};
+
+const createCard = (song, songId) => {
+    return `
+        <div class='column is-one-third'>
+            <div class="card">
+
+                <header class="card-header">
+                    <p class="card-header-title">${song.songTitle}</p>
+                </header>
+
+                <div class="card-content">
+                    <div class="content">${song.songTitle}</div>
+                </div>
+
+                <footer class="card-footer">
+                    <a id="${songId}" href="#" class="card-footer-item"
+                        onclick="deleteNote('${songId}')">
+                        Delete
+                    </a>
+                    <a href="#" class="card-footer-item"
+                        onclick="editNote('${songId}')">
+                        Edit
+                    </a>
+                </footer>
+
+            </div>
+        </div>
+    `;
+};
+
+const deleteNote = (songId) => {
+    console.log(`Deleting note: ${songId}`);
+    firebase.database().ref(`users/${googleUserId}/${songId}`).remove();
+};
+
+const editNote = (songId) => {
+    console.log(`Editing note: ${songId}`);
+    editedNoteId = songId;
+
+    // Show the modal dialog
+    const editNoteModal = document.querySelector("#editNoteModal");
+    
+    // Get the text from the note in the database
+    const notesRef = firebase.database().ref(`users/${googleUserId}/${songId}`);
+    notesRef.on('value', snapshot => {
+        const data = snapshot.val();
+        console.log(data)
+
+        // Show the text from the database in an editable modal
+        document.querySelector("#editTitleInput").value = data.title;
+        document.querySelector("#editTextInput").value = data.text;
+    });
+
+
+    // Save the updated text to the database
+
+    // Hide the modal box once the user has made their changes
+    editNoteModal.classList.toggle('is-active');
+};
+
+const saveEditedNote = () => {
+    const newTitle = document.querySelector("#editTitleInput").value;
+    const newNote = document.querySelector("#editTextInput").value;
+    firebase.database().ref(`users/${googleUserId}/${editedNoteId}`).update(
+        {
+            songTitle: newTitle,
+        }
+    );
+    closeEditModal();
 };
 
 
@@ -61,7 +156,10 @@ window.onload = (event) => {
 // APPLE MUSIC API
 // have to be 18+ to use
 
-const handleNoteSubmit = () => {
+//ADD NEW SONGS
+
+const songAddFunction = () => {
+
     setTimeout(function(){
         const artistSearchSeperate = document.querySelector('#noteTitle').value;
         const artistSearch = artistSearchSeperate.trim().split(' ').join('+')
@@ -91,4 +189,22 @@ const handleNoteSubmit = () => {
     }, 50); 
 }
 
+const toggleEditModal = () => {
+    const editNoteModal = document.querySelector("#editTopSongsModal");
+    editNoteModal.classList.toggle("is-active");
+};
 
+const saveNewSong = () => {
+    const newRanking = document.querySelector("#songRanking").value;
+    const newTitle = document.querySelector("#songTitle").value;
+    firebase.database().ref(`users/${googleUserId}`).push(
+        {
+            songRanking: newRanking,
+            songTitle: newTitle,
+        }
+    );
+    console.log(newRanking);
+    console.log(newTitle);
+    toggleEditModal();
+
+};
