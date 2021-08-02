@@ -23,39 +23,25 @@
     <section class="hero is-fullheight">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <div class="columns is-8 is-variable ">
-
             <!-- WELCOME HERO -->
-            <div class="column is-two-thirds has-text-left">
-              <h1 class="title is-1">What's on your mind?</h1>
+            <div class="section">
+              <h1 class="title is-1">My Music Mix</h1>
               <h1 class="title is-3">
-                “The most beautiful things are those that madness prompts and reason writes."
+                “Share the music you live for."
               </h1>
-              <h1 class="subtitle is-5">
-                —Andre Gide
-              </h1>
-              <a href="viewNotes.html"><button class="button is-link has-text-weight-medium is-medium is-centered">Click Here</button></a>
-              to view your notes.
             </div>
 
-
-
-
-
-
-
             <!-- NOTE FORM -->
-            <div class="column is-one-third has-text-left">
-
-                <div class="field">
-                    <label class="label">Artist</label>
+            <div class="section">
+                <div class="title is-3">
+                    <h1>Top 10 Songs</h1>
                 </div> 
-                <div id="app">
-                    <!-- SONGS GO HERE -->
+                <div id="app" class="columns is-multiline">
+                <!-- Song cards will render here -->
                 </div>
                 <div class="control">
                     <!-- <button class="button is-link is-fullwidth has-text-weight-medium is-medium" onclick="handleNoteSubmit()">Create Note</button> -->
-                    <button onclick="toggleEditModal()" id="AddTopSong" class="button is-link is-fullwidth has-text-weight-medium is-medium">Create Note</button>
+                    <button onclick="toggleEditModal()" id="AddTopSong" class="button is-link has-text-weight-medium is-medium">Add Song</button>
                 </div>
                 <div id="editTopSongsModal" class="modal">
                     <div class="modal-background"></div>
@@ -69,13 +55,13 @@
                         </section>
                         <!-- Song -->
                         <div class="field">
-                            <p>Song Ranking</p>
                             <div class="control">
-                                <input class="input is-medium" type="text" id="songRanking">
+                                <label for="ranking">Song Ranking (1-10):</label>
+                                <input fane="ranking" class="input is-medium" type="text" id="songRanking">
                             </div>
-                            <p>Song Name</p>
                             <div class="control">
-                                <input onInput="songAddFunction()" class="input is-medium" type="text" id="songTitle">
+                                <label for="songname">Song Name:</label>
+                                <input name="songname" onInput="songAddFunction()" class="input is-medium" type="text" id="songTitle">
                             </div>
                         </div>
 
@@ -87,6 +73,22 @@
                 </div>
             </div>
             
+            <!--Edit Note Modal-->
+            <div id="editNoteModal" class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <section class="modal-card-body">
+                    <input class="input is-normal" id="editRankingInput" type="text">
+                    <input class="input is-normal" id="editSongInput" type="text">
+                    </section>
+                    <footer class="modal-card-foot">
+                    <button class="button is-success" onclick="saveEditedNote()">
+                        Save changes
+                    </button>
+                    <button class="button" onclick="closeEditModal()">Cancel</button>
+                    </footer>
+                </div>
+            </div> 
 
 
 
@@ -94,7 +96,7 @@
 
 
 
-          </div>
+
         </div>
       </div>
     </section>
