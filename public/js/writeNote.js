@@ -18,7 +18,7 @@ window.onload = (event) => {
 //Show song on page
 
 const getSongs = (userId) => {
-    const notesRef = firebase.database().ref(`users/${userId}`).orderByChild("songTitle");
+    const notesRef = firebase.database().ref(`users/${userId}`);
     console.log(notesRef);
     notesRef.on('value', (snapshot) => {
     const data = snapshot.val();
@@ -43,7 +43,12 @@ const createCard = (song, songId) => {
         <div class='column is-one-third'>
             <div class="card">
                 <div class="card-content">
-                    <div class="content">${song.songTitle}</div>
+                    <div class="content">${song.songRanking}</div>
+                    <div class="content">${song.songName}</div>
+                    <div class="content">${song.songArtist}</div>
+                    <div class="content">${song.songCover}</div>
+                    <div class="content">${song.songLink}</div>
+                    <div class="content">${song.songPreview}</div>
                 </div>
 
                 <footer class="card-footer">
@@ -82,7 +87,7 @@ const editNote = (songId) => {
 
         // Show the text from the database in an editable modal
         document.querySelector("#editRankingInput").value = data.songRanking;
-        document.querySelector("#editSongInput").value = data.songTitle;
+        document.querySelector("#editSongInput").value = data.songName;
     });
     // Save the updated text to the database
 
@@ -99,7 +104,7 @@ const saveEditedNote = () => {
     firebase.database().ref(`users/${googleUserId}/${editedNoteId}`)
         .update({
             songRanking: editedRanking,
-            songTitle: editedSong
+            songName: editedSong
         })
     console.log('Thing was saved to the database.');
     } else {
@@ -130,7 +135,7 @@ const saveNewSong = () => {
     firebase.database().ref(`users/${googleUserId}`).push(
         {
             songRanking: newSongRanking,
-            songTitle: newSongName,
+            songName: newSongName,
             songArtist: newSongArtist,
             songCover: newSongCover,
             songLink: newSongLink,
