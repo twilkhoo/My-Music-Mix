@@ -1,105 +1,128 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fire Notes</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Fire Notes</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-	  <link rel="stylesheet" href="css/writeNote.css">
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.1.1/fetch-jsonp.js"></script>
-    <script src="js/writeNote.js"></script>
-  </head>
-  <body>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+        <link rel="stylesheet" href="css/writeNote.css">
+        <!-- update the version number as needed -->
+        <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
+        <!-- include only the Firebase features as you need -->
+        <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
+        <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
+        <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.1.1/fetch-jsonp.js"></script>
+        <script src="js/writeNote.js"></script>
+    </head>
+    
+    <body>
 
     <section class="hero is-fullheight">
-      <div class="hero-body">
-        <div class="container has-text-centered">
+        <div class="hero-body">
+            <div class="container has-text-centered">
             <!-- WELCOME HERO -->
-            <div class="section">
-              <h1 class="title is-1">My Music Mix</h1>
-              <h1 class="title is-3">
-                “Share the music you live for."
-              </h1>
-            </div>
+                <div class="section">
+                    <h1 class="title is-1">My Music Mix</h1>
+                    <h1 class="title is-3">“Share the music you live for."</h1>
+                </div>
 
-            <!-- NOTE FORM -->
-            <div class="section">
-                <div class="title is-3">
+                <!-- TOP 10 SONGS LIST -->
+                <div class="section">
+                    <div class="title is-3">
                     <h1>Top 10 Songs</h1>
-                </div> 
-                <div id="app" class="columns is-multiline">
-                <!-- Song cards will render here -->
-                </div>
-                <div class="control">
-                    <!-- <button class="button is-link is-fullwidth has-text-weight-medium is-medium" onclick="handleNoteSubmit()">Create Note</button> -->
-                    <button onclick="toggleEditModal()" id="AddTopSong" class="button is-link has-text-weight-medium is-medium">Add Song</button>
-                </div>
-                <div id="editTopSongsModal" class="modal">
-                    <div class="modal-background"></div>
-                    <div class="modal-card">
-                        <header class="modal-card-head">
-                        <p class="modal-card-title">Add Top Song</p>
-                        <button onclick="toggleEditModal()" class="delete" aria-label="close"></button>
-                        </header>
-                        <section class="modal-card-body">
-                        <!-- Content ... -->
-                        </section>
-                        <!-- Song -->
-                        <div class="field">
-                            <div class="control">
-                                <label for="ranking">Song Ranking (1-10):</label>
-                                <input fane="ranking" class="input is-medium" type="text" id="songRanking">
-                            </div>
-                            <div class="control">
-                                <label for="songname">Song Name:</label>
-                                <input name="songname" onInput="songAddFunction()" class="input is-medium" type="text" id="songTitle">
-                            </div>
-                        </div>
-
-                        <footer class="modal-card-foot">
-                        <button id="createNewSong" class="button is-success" onclick="saveNewSong()">Save changes</button>
-                        <button class="button" onclick="toggleEditModal()">Cancel</button>
-                        </footer>
+                    </div> 
+                    <div id="app" class="columns is-multiline">
+                    <!-- Song cards will render here -->
+                    </div>
+                    <div class="control">
+                        <button onclick="toggleEditModal()" id="AddTopSong" class="button is-link has-text-weight-medium is-medium">Add Song</button>
                     </div>
                 </div>
             </div>
-            
-            <!--Edit Note Modal-->
-            <div id="editNoteModal" class="modal">
-                <div class="modal-background"></div>
-                <div class="modal-card">
-                    <section class="modal-card-body">
-                    <input class="input is-normal" id="editRankingInput" type="text">
-                    <input class="input is-normal" id="editSongInput" type="text">
-                    </section>
-                    <footer class="modal-card-foot">
-                    <button class="button is-success" onclick="saveEditedNote()">
-                        Save changes
-                    </button>
-                    <button class="button" onclick="closeEditModal()">Cancel</button>
-                    </footer>
-                </div>
-            </div> 
-
-
-
-
-
-
-
-
         </div>
-      </div>
     </section>
+
+
+
+
+
+
+
+<!--ONLY MODALS BEYOND THIS POINT-->
+<!--ONLY MODALS BEYOND THIS POINT-->
+<!--ONLY MODALS BEYOND THIS POINT-->
+<!--ONLY MODALS BEYOND THIS POINT-->
+<!--ONLY MODALS BEYOND THIS POINT-->
+<!--ONLY MODALS BEYOND THIS POINT-->
+<!--ONLY MODALS BEYOND THIS POINT-->
+<!--ONLY MODALS BEYOND THIS POINT-->
+<!--ONLY MODALS BEYOND THIS POINT-->
+<!--ONLY MODALS BEYOND THIS POINT-->
+
+
+
+        <div id="editTopSongsModal" class="modal" >
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title has-text-left">Add a song to your top 10 list</p>
+                    <button class="delete" onclick="toggleEditModal()" aria-label="close"></button>
+                </header>
+            
+                <section class="modal-card-body">
+                    <div class="content">
+                        <div class="control">
+                            <label for="ranking">Song Ranking (1-10):</label>
+                            <input fane="ranking" class="input is-medium" type="text" id="songRanking">
+                        </div>
+                        <div class="control">
+                            <label for="songname">Song Name:</label>
+                            <input name="songname" onInput="songAddFunction()" class="input is-medium" type="text" id="songTitle">
+                        </div>
+
+                    
+                    </div>
+                </section>
+
+                <footer class="modal-card-foot">
+                    <button id="createNewSong" class="button is-success" onclick="saveNewSong()">Save changes</button>
+                    <button class="button" onclick="toggleEditModal()">Cancel</button>
+                </footer>
+
+            </div>
+        </div>
+
+
+
+        <!--Edit Note Modal-->
+        <div id="editNoteModal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <section class="modal-card-body">
+                <input class="input is-normal" id="editRankingInput" type="text">
+                <input class="input is-normal" id="editSongInput" type="text">
+                </section>
+                <footer class="modal-card-foot">
+                <button class="button is-success" onclick="saveEditedNote()">
+                    Save changes
+                </button>
+                <button class="button" onclick="closeEditModal()">Cancel</button>
+                </footer>
+            </div>
+        </div> 
+
+
+
+
+
+
+
+
+
 
   </body>
 </html>
