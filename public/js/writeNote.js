@@ -170,6 +170,7 @@ const songAddFunction = () => {
             const song1Preview = song1Data.preview;
             const song1pic = song1Data.album.cover_xl;
             const song1link = song1Data.link;
+            const song1Id = song1Data.id;
 
             console.log("HERE IS YOUR RESULT:");
             console.log("Song name: " + song1Name);
@@ -177,11 +178,17 @@ const songAddFunction = () => {
             console.log("Song image: " + song1pic);
             console.log("Song preview: " + song1Preview);
             console.log("Song link: " + song1link);
-            
+            console.log("Song ID: " + song1Id);
+
+            document.getElementById("songNameRow1").innerHTML = song1Name;
+            document.getElementById("songArtistRow1").innerHTML = song1ArtistName;
+
 
         })
 
         .catch(err => {console.log(`Error: ${err}`);});
 
     }, 50);
+
+    
 }
