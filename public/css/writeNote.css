@@ -10,3 +10,49 @@
     border-radius: 0px;
 }
 
+.songCard {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.songImage{
+    height: 20em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.songRanking {
+    text-align: left;
+    font-size: 2em;
+    background-color: rgba(255, 255 , 255, 0.5);
+    padding-left: 1em;
+}
+
+.songInfo {
+    padding-bottom: 1.5em;
+}
+
+.songName{ 
+    float: left;
+    padding-left: 1em;
+    display: flex;
+}
+
+.songArtist{
+    float: right;
+    padding-right: 1em;
+    display: flex;
+}
+
+.playDiv {
+    display: flex;
+    height: 100%;
+}
+
+.playButton{
+    margin: auto;
+    height: 45%;
+    width: auto;
+}

@@ -42,13 +42,18 @@ const createCard = (song, songId) => {
     return `
         <div class='column is-one-third'>
             <div class="card">
-                <div class="card-content">
-                    <div class="content">${song.songRanking}</div>
-                    <div class="content">${song.songName}</div>
-                    <div class="content">${song.songArtist}</div>
-                    <div class="content">${song.songCover}</div>
-                    <div class="content">${song.songLink}</div>
-                    <div class="content">${song.songPreview}</div>
+                <div class="card-content songCard">
+                    <div class="content songImage" style="background-image: url(${song.songCover});">
+                        <div class="songRanking">${song.songRanking}</div>
+                        <div class="playDiv">
+                            <img id="card_${song.songId}" class="playButton" onclick="playSong(${song.songId})" src="https://freepngimg.com/save/25569-play-button-transparent/1024x1024" alt="play">
+                        </div>
+                    </div>
+                    <div class="content songInfo">
+                        <div class="songName">${song.songName}</div>
+                        <div class="songArtist">${song.songArtist}</div>
+                    </div>
+                    
                 </div>
 
                 <footer class="card-footer">
@@ -65,6 +70,22 @@ const createCard = (song, songId) => {
             </div>
         </div>
     `;
+};
+
+const playSong = (id) => {
+
+    const songId = `card_${id}`;
+    const img = document.querySelector("#" + songId);
+    
+    if (DZ.player.isPlaying()) {
+        img.src = "https://freepngimg.com/save/25569-play-button-transparent/1024x1024";
+        DZ.player.pause();
+    }
+    else {
+        img.src = "https://therexberkhamsted.com/wp-content/uploads/revslider/main/pause-button-1.png";
+        DZ.player.playTracks([id]);
+    }
+     
 };
 
 const deleteNote = (songId) => {

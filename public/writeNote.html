@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Fire Notes</title>
+        <title>My Music Mix</title>
 
         <link rel="shortcut icon" type="image/jpg" href="https://image.flaticon.com/icons/png/512/752/752688.png"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,9 +20,9 @@
         <script defer src="/__/firebase/init.js?useEmulator=true"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.1.1/fetch-jsonp.js"></script>
         <script defer src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
-
-
         <script src="js/writeNote.js"></script>
+
+        <script src="https://e-cdns-files.dzcdn.net/js/min/dz.js"></script>
     </head>
     
     <body>
@@ -37,6 +37,7 @@
                 </div>
 
                 <!-- TOP 10 SONGS LIST -->
+                <div id="dz-root"></div>
                 <div class="section">
                     <div class="title is-3">
                     <h1>Top 10 Songs</h1>
@@ -56,8 +57,19 @@
         </div>
     </section>
 
-
-
+    <div id="player"></div>
+    <script>
+    DZ.init({
+		appId  : '494642',
+		channelUrl : 'https://5000-7be65bc9-f2ca-4354-a064-d16edd9a9abc.cs-us-central1-pits.cloudshell.dev/channel.html',
+		player: {
+			container: 'player',
+			width : 0,
+			height : 0,
+			onload : function(){console.log("Loaded player");}
+        }
+    });
+    </script>
 
 
 
@@ -95,24 +107,6 @@
                                     <label for="ranking">Song Search:</label>
                                     <input name="ranking" onInput="songAddFunction()" class="input is-medium" type="text" id="songSearch">
                                 </div>
-
-                                <!-- 
-                                <div class="box">
-                                    I'm in a box.
-                                </div>
-                                <div class="box">
-                                    I'm in a box.
-                                </div>
-                                <div class="box">
-                                    I'm in a box.
-                                </div>
-                                <div class="box">
-                                    I'm in a box.
-                                </div>
-                                <div class="box">
-                                    I'm in a box.
-                                </div> 
-                                -->
 
                                 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                                     <tr>
