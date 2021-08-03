@@ -16,9 +16,13 @@
     <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.1.1/fetch-jsonp.js"></script>
-    <script src="js/writeNote.js"></script>
+
+    <script defer src="js/writeNote.js"></script>
   </head>
   <body>
+
+
+
 
     <section class="hero is-fullheight">
       <div class="hero-body">
@@ -49,9 +53,9 @@
 
                 
                 <div class="field">
-                    <label class="label">Artist</label>
+                    <label class="label">Song</label>
                     <div class="control">
-                        <input onInput="handleNoteSubmit()" class="input is-medium" type="text" id="noteTitle">
+                        <input onInput="songAddFunction()" class="input is-medium" type="text" id="songTitle">
                     </div>
                 </div>
 
