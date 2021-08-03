@@ -14,7 +14,7 @@ input::placeholder {
 }
 
 .card.large {
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 .title.no-padding {

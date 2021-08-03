@@ -90,6 +90,7 @@ const editNote = (songId) => {
     editNoteModal.classList.toggle('is-active');
 };
 
+
 const saveEditedNote = () => {
     if (confirm('Are you sure you want to change this note?')) {
     // Save it!
@@ -119,23 +120,31 @@ const toggleEditModal = () => {
 };
 
 const saveNewSong = () => {
-    const newRanking = document.querySelector("#songRanking").value;
-    const newTitle = document.querySelector("#songTitle").value;
+    const newSongRanking = document.querySelector("#songRanking").value;
+    const newSongName = document.querySelector("#songName").value;
+    const newSongArtist = document.querySelector("#songArtist").value;
+    const newSongCover = document.querySelector("#songCover").value;
+    const newSongLink = document.querySelector("#songLink").value;
+    const newSongPreview = document.querySelector("#songPreview").value;
+
     firebase.database().ref(`users/${googleUserId}`).push(
         {
-            songRanking: newRanking,
-            songTitle: newTitle,
+            songRanking: newSongRanking,
+            songTitle: newSongName,
+            songArtist: newSongArtist,
+            songCover: newSongCover,
+            songLink: newSongLink,
+            songPreview: newSongPreview,
         }
     );
-    console.log(newRanking);
-    console.log(newTitle);
+    console.log("okay, bye")
     toggleEditModal();
 };
 
 
 const songAddFunction = () => {
     setTimeout(function(){
-        const songSearchSeperate = document.querySelector('#songTitle').value;
+        const songSearchSeperate = document.querySelector('#songSearch').value;
         const songSearch = songSearchSeperate.trim().split(' ').join('%20')
         console.log(songSearch);
         const song = `https://api.deezer.com/search/track?q=${songSearch}&limit=5`;

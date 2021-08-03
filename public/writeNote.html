@@ -5,10 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Fire Notes</title>
 
+        <link rel="shortcut icon" type="image/jpg" href="https://image.flaticon.com/icons/png/512/752/752688.png"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
         <link rel="stylesheet" href="css/writeNote.css">
+        <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+
         <!-- update the version number as needed -->
         <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
         <!-- include only the Firebase features as you need -->
@@ -16,6 +19,9 @@
         <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
         <script defer src="/__/firebase/init.js?useEmulator=true"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.1.1/fetch-jsonp.js"></script>
+        <script defer src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
+
+
         <script src="js/writeNote.js"></script>
     </head>
     
@@ -39,9 +45,13 @@
                     <!-- Song cards will render here -->
                     </div>
                     <div class="control">
-                        <button onclick="toggleEditModal()" id="AddTopSong" class="button is-link has-text-weight-medium is-medium">Add Song</button>
+                        <button onclick="toggleEditModal()" id="AddTopSong" class="button modal-button is-link has-text-weight-medium is-medium" data-target="editTopSongsModal">Add Song</button>
                     </div>
                 </div>
+
+
+
+                
             </div>
         </div>
     </section>
@@ -65,28 +75,103 @@
 
 
 
-        <div id="editTopSongsModal" class="modal" >
+        <div id="editTopSongsModal" class="modal modal-fx-slideBottom">
             <div class="modal-background"></div>
-            <div class="modal-card">
+            <div class="modal-content">
+
                 <header class="modal-card-head">
                     <p class="modal-card-title has-text-left">Add a song to your top 10 list</p>
                     <button class="delete" onclick="toggleEditModal()" aria-label="close"></button>
                 </header>
             
                 <section class="modal-card-body">
+
                     <div class="content">
-                        <div class="control">
-                            <label for="ranking">Song Ranking (1-10):</label>
-                            <input fane="ranking" class="input is-medium" type="text" id="songRanking">
-                        </div>
-                        <div class="control">
-                            <label for="songname">Song Name:</label>
-                            <input name="songname" onInput="songAddFunction()" class="input is-medium" type="text" id="songTitle">
+
+                        <div class="columns">
+                            
+                            <div class="column">
+                                <div class="control">
+                                    <label for="ranking">Song Search:</label>
+                                    <input name="ranking" onInput="songAddFunction()" class="input is-medium" type="text" id="songSearch">
+                                </div>
+
+                                <div class="box">
+                                    I'm in a box.
+                                </div>
+                                <div class="box">
+                                    I'm in a box.
+                                </div>
+                                <div class="box">
+                                    I'm in a box.
+                                </div>
+                                <div class="box">
+                                    I'm in a box.
+                                </div>
+                                <div class="box">
+                                    I'm in a box.
+                                </div>
+
+
+                            </div>
+
+                            <div class="column">
+                                <label for="songranking">Choose a ranking:</label>
+                                    <select name="songranking" id="songRanking">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+
+
+                                <div class="control">
+                                    <label for="songname">Song name (*):</label>
+                                    <input name="songname" class="input is-medium" type="text" id="songName">
+                                </div>
+
+                                <div class="control">
+                                    <label for="songartist">Artist name (*):</label>
+                                    <input name="songartist" class="input is-medium" type="text" id="songArtist">
+                                </div>
+
+                                <div class="control">
+                                    <label for="songcoverart">Song cover art (*):</label>
+                                    <input name="songcoverart" class="input is-medium" type="text" id="songCover">
+                                </div>
+
+                                <div class="control">
+                                    <label for="songlink">Song link:</label>
+                                    <input name="songlink" class="input is-medium" type="text" id="songLink">
+                                </div>
+
+                                <div class="control">
+                                    <label for="songpreview">Song preview:</label>
+                                    <input name="songpreview" class="input is-medium" type="text" id="songPreview">
+                                </div>
+
+                            </div>
+
                         </div>
 
-                    
-                    </div>
+
+
+
+
+
+
                 </section>
+
+
+
+
+
 
                 <footer class="modal-card-foot">
                     <button id="createNewSong" class="button is-success" onclick="saveNewSong()">Save changes</button>
