@@ -1,0 +1,12 @@
+.modal-card, .modal-content {
+    margin: 0 auto;
+    max-height: calc(100vh - 40px);
+    width: 1200px;
+}
+
+.box{
+
+    margin: 2px 2px 2px 2px!important;
+    border-radius: 0px;
+}
+
