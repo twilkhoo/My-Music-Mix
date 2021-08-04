@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Fire Notes</title>
+        <title>My Music Mix</title>
 
         <link rel="shortcut icon" type="image/jpg" href="https://image.flaticon.com/icons/png/512/752/752688.png"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,11 +21,12 @@
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.1.1/fetch-jsonp.js"></script>
         <script defer src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
 
-
         <script src="js/writeNote.js"></script>
+        <script src="https://e-cdns-files.dzcdn.net/js/min/dz.js"></script>
     </head>
     
     <body>
+        <div id="dz-root"></div>
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="container has-text-centered">
@@ -34,6 +35,20 @@
                         <h1 class="title is-1">My Music Mix</h1>
                         <h1 class="title is-3">“Share the music you live for."</h1>
                     </div>
+
+                    <div id="player"></div>
+                    <script>
+                        DZ.init({
+		                    appId  : '494642',
+		                    channelUrl : 'https://5000-7be65bc9-f2ca-4354-a064-d16edd9a9abc.cs-us-central1-pits.cloudshell.dev/channel.html',
+		                    player: {
+			                    container: 'player',
+			                    width : 0,
+			                    height : 0,
+			                    onload : function(){console.log("Loaded player");}
+                            }
+                        });
+                    </script>
 
                     <div class="section">
 

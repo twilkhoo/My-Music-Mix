@@ -95,6 +95,9 @@ let song5Link;
 let song5Id;
 
 
+let currentSongId = undefined;
+
+
 // CODE TO SHOW SONGS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
 // CODE TO SHOW SONGS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
 // CODE TO SHOW SONGS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,22 +148,26 @@ const createSongCard = (song, songId) => {
     return `
         <div class='column is-one-third'>
             <div class="card">
-                <div class="card-content">
-                    <div class="content">${song.songRanking}</div>
-                    <div class="content">${song.songName}</div>
-                    <div class="content">${song.songArtist}</div>
-                    <div class="content">${song.songCover}</div>
-                    <div class="content">${song.songLink}</div>
-                    <div class="content">${song.songPreview}</div>
-                    <div class="content">${song.songId}</div>
+                <div class="card-content songCard">
+                    <div class="content songImage" style="background-image: url(${song.songCover});">
+                        <div class="songRanking">${parseInt(song.songRanking) + 1}</div>
+                        <div class="playDiv">
+                            <img id="card_${song.songId}" class="playButton" onclick="playSong(${song.songId})" src="https://freepngimg.com/save/25569-play-button-transparent/1024x1024" alt="play">
+                        </div>
+                    </div>
+                    <div class="content songInfo">
+                        <div class="songName">${song.songName}</div>
+                        <div class="songArtist">${song.songArtist}</div>
+                    </div>
+                    
                 </div>
 
                 <footer class="card-footer">
-                    <a id="${songId}" class="card-footer-item"
+                    <a id="${songId}" href="#" class="card-footer-item"
                         onclick="deleteSong('${songId}')">
                         Delete
                     </a>
-                    <a class="card-footer-item"
+                    <a href="#" class="card-footer-item"
                         onclick="editSong('${songId}')" data-target="editSongsModal">
                         Edit
                     </a>
@@ -169,6 +176,32 @@ const createSongCard = (song, songId) => {
             </div>
         </div>
     `;
+};
+
+const playSong = (id) => {
+
+    if (currentSongId === undefined) {
+        currentSongId = id;
+    }
+    else if (currentSongId !== id) {
+        const oldImg = document.querySelector(`#card_${currentSongId}`);
+        oldImg.src = "https://freepngimg.com/save/25569-play-button-transparent/1024x1024";
+    }
+
+    const songId = `card_${id}`;
+    const img = document.querySelector("#" + songId);
+    
+    if (DZ.player.isPlaying()) {
+        img.src = "https://freepngimg.com/save/25569-play-button-transparent/1024x1024";
+        DZ.player.pause();
+    }
+    else {
+        img.src = "https://therexberkhamsted.com/wp-content/uploads/revslider/main/pause-button-1.png";
+        DZ.player.playTracks([id]);
+    }
+
+    currentSongId = id;
+     
 };
 
 
@@ -766,27 +799,33 @@ const createAlbumCard = (album, albumId) => {
     return `
         <div class='column is-one-third'>
             <div class="card">
-                <div class="card-content">
-                    <div class="content">${album.albumRanking}</div>
-                    <div class="content">${album.albumName}</div>
-                    <div class="content">${album.albumArtist}</div>
-                    <div class="content">${album.albumPic}</div>
-                    <div class="content">${album.albumLink}</div>
+                <div class="card-content songCard">
+                    <div class="content songImage" onclick="window.location = '${album.albumLink}'" style="background-image: url(${album.albumPic});">
+                        <div class="songRanking">${parseInt(album.albumRanking) + 1}</div>
+                    </div>
+                    <div class="content songInfo">
+                        <div class="songName">${album.albumName}</div>
+                        <div class="songArtist">${album.albumArtist}</div>
+                    </div>
+                    
                 </div>
+
                 <footer class="card-footer">
-                    <a id="${albumId}" class="card-footer-item"
+                    <a id="${albumId}" href="#" class="card-footer-item"
                         onclick="deleteAlbum('${albumId}')">
                         Delete
                     </a>
-                    <a class="card-footer-item"
-                        onclick="editAlbum('${albumId}')">
+                    <a href="#" class="card-footer-item"
+                        onclick="editAlbum('${albumId}')" data-target="editAlbumsModal">
                         Edit
                     </a>
                 </footer>
+
             </div>
         </div>
     `;
 };
+
 
 
 
@@ -1327,22 +1366,27 @@ const createArtistCard = (artist, artistId) => {
     return `
         <div class='column is-one-third'>
             <div class="card">
-                <div class="card-content">
-                    <div class="content">${artist.artistRanking}</div>
-                    <div class="content">${artist.artistName}</div>
-                    <div class="content">${artist.artistPic}</div>
-                    <div class="content">${artist.artistLink}</div>
+                <div class="card-content songCard">
+                    <div class="content songImage" onclick="window.location = '${artist.artistLink}'" style="background-image: url(${artist.artistPic});">
+                        <div class="songRanking">${parseInt(artist.artistRanking) + 1}</div>
+                    </div>
+                    <div class="content songInfo">
+                        <div class="songName">${artist.artistName}</div>
+                    </div>
+                    
                 </div>
+
                 <footer class="card-footer">
-                    <a id="${artistId}" class="card-footer-item"
+                    <a id="${artistId}" href="#" class="card-footer-item"
                         onclick="deleteArtist('${artistId}')">
                         Delete
                     </a>
-                    <a class="card-footer-item"
-                        onclick="editArtist('${artistId}')">
+                    <a href="#" class="card-footer-item"
+                        onclick="editArtist('${artistId}')" data-target="editArtistsModal">
                         Edit
                     </a>
                 </footer>
+
             </div>
         </div>
     `;
