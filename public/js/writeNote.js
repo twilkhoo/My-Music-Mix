@@ -38,6 +38,19 @@ window.onload = (event) => {
 
 let editedSongId;
 let songCount;
+let finalSongRankings = { 
+    songRank0: false,
+    songRank1: false, 
+    songRank2: false, 
+    songRank3: false,
+    songRank4: false,
+    songRank5: false,
+    songRank6: false,
+    songRank7: false,
+    songRank8: false,
+    songRank9: false
+}
+
 
 let allSongs;
 
@@ -104,9 +117,11 @@ const getSongs = (googleUserId) => {
 const renderSongDataAsHtml = (data) => {
     let cards = ``;
     songCount = 0;
+    Object.keys(finalSongRankings).forEach(rank => finalSongRankings[rank] = false) 
     for(const songItem in data) {
         songCount++;
         const song = data[songItem];
+        finalSongRankings[`songRank${song.songRanking}`] = true; 
         // For each note create an HTML card
         console.log(songItem)
         cards += createSongCard(song, songItem)
@@ -170,8 +185,10 @@ const createSongCard = (song, songId) => {
 
 
 const deleteSong = (songId) => {
-    console.log(`Deleting note: ${songId}`);
-    firebase.database().ref(`users/${googleUserId}/songFolder/${songId}`).remove();
+    if (confirm('Are you sure you want to delete this song?')) {
+        console.log(`Deleting note: ${songId}`);
+        firebase.database().ref(`users/${googleUserId}/songFolder/${songId}`).remove();
+    }
 };
 
 const toggleEditSongsModal = () => {
@@ -183,6 +200,15 @@ const toggleEditSongsModal = () => {
 };
 
 const toggleNewSongsModal = () => {
+    for(let i = 0; i < 9; i++) { 
+        if(finalSongRankings[`songRank${i}`]) {
+            document.getElementById(`songRankingFor${i}`).disabled = true;   
+        }
+        else {
+            document.getElementById(`songRankingFor${i}`).disabled = false;
+        }
+    }
+    
     console.log("toggling the new songs modal...")
     document.querySelector("#newSongsModal").classList.toggle("is-active");
 
@@ -262,7 +288,7 @@ const editSong = (songId) => {
 };
  
 const saveEditedSong = () => {
-    if (confirm('Are you sure you want to change this note?')) {
+    if (confirm('Are you sure you want to change this song?')) {
         // Save it!
         const editedRanking = document.querySelector("#editSongRanking").value;
         const editedSong = document.querySelector("#editSongName").value;
@@ -632,6 +658,19 @@ const editRow5ToInputs = () => {
 let editedAlbumId;
 let albumCount;
 
+let finalAlbumRankings = { 
+    albumRank0: false,
+    albumRank1: false, 
+    albumRank2: false, 
+    albumRank3: false,
+    albumRank4: false,
+    albumRank5: false,
+    albumRank6: false,
+    albumRank7: false,
+    albumRank8: false,
+    albumRank9: false
+}
+
 let allAlbums;
 
 let album1Name;
@@ -691,9 +730,11 @@ const renderAlbumDataAsHtml = (data) => {
     console.log("Got the data, now putting it in the html")
     let cards = ``;
     albumCount = 0;
+    Object.keys(finalAlbumRankings).forEach(rank => finalAlbumRankings[rank] = false) 
     for(const albumItem in data) {
         albumCount++;
         const album = data[albumItem];
+        finalAlbumRankings[`albumRank${album.albumRanking}`] = true; 
         // For each note create an HTML card
         console.log(albumItem)
         cards += createAlbumCard(album, albumItem)
@@ -755,8 +796,10 @@ const createAlbumCard = (album, albumId) => {
 
 
 const deleteAlbum = (albumId) => {
-    console.log(`Deleting note: ${albumId}`);
-    firebase.database().ref(`users/${googleUserId}/albumFolder/${albumId}`).remove();
+    if (confirm('Are you sure you want to delete this album?')) {
+        console.log(`Deleting note: ${albumId}`);
+        firebase.database().ref(`users/${googleUserId}/albumFolder/${albumId}`).remove();
+    }
 };
 
 const toggleEditAlbumsModal = () => {
@@ -768,6 +811,15 @@ const toggleEditAlbumsModal = () => {
 };
 
 const toggleNewAlbumsModal = () => {
+    for(let i = 0; i < 9; i++) { 
+        if(finalAlbumRankings[`albumRank${i}`]) {
+            document.getElementById(`albumRankingFor${i}`).disabled = true;   
+        }
+        else {
+            document.getElementById(`albumRankingFor${i}`).disabled = false;
+        }
+    }
+
     console.log("toggling the new albums modal...")
     document.querySelector("#newAlbumsModal").classList.toggle("is-active");
 
@@ -841,7 +893,7 @@ const editAlbum = (albumId) => {
 };
  
 const saveEditedAlbum = () => {
-    if (confirm('Are you sure you want to change this note?')) {
+    if (confirm('Are you sure you want to change this album?')) {
         // Save it!
         const editedAlbumRanking = document.querySelector("#editAlbumRanking").value;
         const editedAlbumName = document.querySelector("#editAlbumName").value;
@@ -1163,6 +1215,19 @@ const editAlbumRow5ToInputs = () => {
 let editedArtistId;
 let artistCount;
 
+let finalArtistRankings = { 
+    artistRank0: false,
+    artistRank1: false, 
+    artistRank2: false, 
+    artistRank3: false,
+    artistRank4: false,
+    artistRank5: false,
+    artistRank6: false,
+    artistRank7: false,
+    artistRank8: false,
+    artistRank9: false
+}
+
 let allArtists;
 
 let artist1Name;
@@ -1217,9 +1282,11 @@ const renderArtistDataAsHtml = (data) => {
     console.log("Got the data, now putting it in the html")
     let cards = ``;
     artistCount = 0;
+    Object.keys(finalArtistRankings).forEach(rank => finalArtistRankings[rank] = false) 
     for(const artistItem in data) {
         artistCount++;
         const artist = data[artistItem];
+        finalArtistRankings[`artistRank${artist.artistRanking}`] = true; 
         // For each note create an HTML card
         console.log(artistItem)
         cards += createArtistCard(artist, artistItem)
@@ -1280,8 +1347,10 @@ const createArtistCard = (artist, artistId) => {
 
 
 const deleteArtist = (artistId) => {
-    console.log(`Deleting note: ${artistId}`);
-    firebase.database().ref(`users/${googleUserId}/artistFolder/${artistId}`).remove();
+    if (confirm('Are you sure you want to delete this artist?')) {
+        console.log(`Deleting note: ${artistId}`);
+        firebase.database().ref(`users/${googleUserId}/artistFolder/${artistId}`).remove();
+    }
 };
 
 const toggleEditArtistsModal = () => {
@@ -1293,6 +1362,15 @@ const toggleEditArtistsModal = () => {
 };
 
 const toggleNewArtistsModal = () => {
+    for(let i = 0; i < 9; i++) { 
+        if(finalArtistRankings[`artistRank${i}`]) {
+            document.getElementById(`artistRankingFor${i}`).disabled = true;   
+        }
+        else {
+            document.getElementById(`artistRankingFor${i}`).disabled = false;
+        }
+    }
+
     console.log("toggling the new artists modal...")
     document.querySelector("#newArtistsModal").classList.toggle("is-active");
 
@@ -1357,7 +1435,7 @@ const editArtist = (artistId) => {
 };
  
 const saveEditedArtist = () => {
-    if (confirm('Are you sure you want to change this note?')) {
+    if (confirm('Are you sure you want to change this artist?')) {
         // Save it!
         const editedArtistRanking = document.querySelector("#editArtistRanking").value;
         const editedArtistName = document.querySelector("#editArtistName").value;
