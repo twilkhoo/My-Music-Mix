@@ -192,6 +192,15 @@ const deleteSong = (songId) => {
 };
 
 const toggleEditSongsModal = () => {
+    for(let i = 0; i < 10; i++) { 
+        if(finalSongRankings[`songRank${i}`]) {
+            document.getElementById(`editSongRankingFor${i}`).disabled = true;   
+        }
+        else {
+            document.getElementById(`editSongRankingFor${i}`).disabled = false;
+        }
+    }
+
     document.getElementById("songEditSearch").value = "";
     document.getElementById("editedSearchingTable").style.display = "none";
 
@@ -200,7 +209,7 @@ const toggleEditSongsModal = () => {
 };
 
 const toggleNewSongsModal = () => {
-    for(let i = 0; i < 9; i++) { 
+    for(let i = 0; i < 10; i++) { 
         if(finalSongRankings[`songRank${i}`]) {
             document.getElementById(`songRankingFor${i}`).disabled = true;   
         }
@@ -803,6 +812,15 @@ const deleteAlbum = (albumId) => {
 };
 
 const toggleEditAlbumsModal = () => {
+    for(let i = 0; i < 10; i++) { 
+        if(finalAlbumRankings[`albumRank${i}`]) {
+            document.getElementById(`editAlbumRankingFor${i}`).disabled = true;   
+        }
+        else {
+            document.getElementById(`editAlbumRankingFor${i}`).disabled = false;
+        }
+    }
+
     document.getElementById("editAlbumSearch").value = "";
     document.getElementById("editAlbumSearchingTable").style.display = "none";
 
@@ -811,7 +829,7 @@ const toggleEditAlbumsModal = () => {
 };
 
 const toggleNewAlbumsModal = () => {
-    for(let i = 0; i < 9; i++) { 
+    for(let i = 0; i < 10; i++) { 
         if(finalAlbumRankings[`albumRank${i}`]) {
             document.getElementById(`albumRankingFor${i}`).disabled = true;   
         }
@@ -1354,6 +1372,14 @@ const deleteArtist = (artistId) => {
 };
 
 const toggleEditArtistsModal = () => {
+    for(let i = 0; i < 10; i++) { 
+        if(finalArtistRankings[`artistRank${i}`]) {
+            document.getElementById(`editArtistRankingFor${i}`).disabled = true;   
+        }
+        else {
+            document.getElementById(`editArtistRankingFor${i}`).disabled = false;
+        }
+    }
     document.getElementById("editArtistSearch").value = "";
     document.getElementById("editArtistSearchingTable").style.display = "none";
 
@@ -1362,7 +1388,7 @@ const toggleEditArtistsModal = () => {
 };
 
 const toggleNewArtistsModal = () => {
-    for(let i = 0; i < 9; i++) { 
+    for(let i = 0; i < 10; i++) { 
         if(finalArtistRankings[`artistRank${i}`]) {
             document.getElementById(`artistRankingFor${i}`).disabled = true;   
         }
