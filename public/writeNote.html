@@ -34,6 +34,22 @@
                         <h1 class="title is-1">My Music Mix</h1>
                         <h1 class="title is-3">“Share the music you live for."</h1>
                     </div>
+<<<<<<< HEAD
+
+                    <div class="section">
+
+                        <!-- TOP 10 SONGS LIST -->
+                        <div class="title is-3">
+                        <h1>Top 10 Songs</h1>
+                        </div> 
+                        <div class="control">
+                            <button onclick="toggleNewSongsModal()" id="addSongButton" class="button is-link has-text-weight-medium is-medium" data-target="newSongsModal">Add Song</button>
+                            <p class="limit-message" id="songLimitMessage">Limit of 10 songs reached. Delete/edit a song to add another.</p>
+                        </div>
+                        <div id="app" class="columns is-multiline">
+                        <!-- Song cards will render here -->
+                        </div>
+=======
 
                     <div class="section">
 
@@ -92,6 +108,54 @@
         </p>
         </div>
     </footer>     
+>>>>>>> 3072cb88137d4a42dd8ca5b023ced0d99e2b2d61
+
+                        <!-- TOP ALBUMS LIST -->
+                        <div class="section">
+                            <div class="title is-3">
+                            <h1>Top 10 Albums</h1>
+                            </div> 
+                            <div class="control">
+                                <button onclick="toggleNewAlbumsModal()" id="addAlbumButton" class="button is-link has-text-weight-medium is-medium" data-target="newAlbumsModal">Add Album</button>
+                                <p class="limit-message" id="albumLimitMessage">Limit of 10 albums reached. Delete/edit an album to add another.</p>
+                            </div>
+                            <div id="appAlbum" class="columns is-multiline">
+                                <!-- Album cards will render here -->
+                            </div>
+                        </div>
+                    
+                        <!-- TOP ARTISTS LIST -->
+                        <div class="section">
+                            <div class="title is-3">
+                            <h1>Top 10 Artists</h1>
+                            </div> 
+                            <div class="control">
+                                <button onclick="toggleNewArtistsModal()" id="addArtistButton" class="button is-link has-text-weight-medium is-medium" data-target="newArtistsModal">Add Artist</button>
+                                <p class="limit-message" id="artistLimitMessage">Limit of 10 artists reached. Delete/edit an artist to add another.</p>
+                            </div>
+                            <div id="appArtist" class="columns is-multiline">
+                                <!-- Artist cards will render here -->
+                            </div>
+                        </div>
+
+
+<<<<<<< HEAD
+                    </div>
+                </div>
+                </div>
+        </section>
+    </body>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+        <p>
+            <strong>My Music Mix. </strong> No rights reserved. Powered by 
+            <a href="https://developers.deezer.com/api" target="_blank">Deezer</a>.
+        </p>
+        </div>
+    </footer>     
+=======
+>>>>>>> 3072cb88137d4a42dd8ca5b023ced0d99e2b2d61
 
 
 
@@ -111,6 +175,21 @@
 <!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
 <!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
 
+<<<<<<< HEAD
+=======
+
+<!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD SONG MODAL ----------------------------------------------------------------------------------------------->
+
+>>>>>>> 3072cb88137d4a42dd8ca5b023ced0d99e2b2d61
         <div id="newSongsModal" class="modal modal-fx-slideBottom">
             <div class="modal-background"></div>
             <div class="modal-content">
@@ -217,6 +296,7 @@
                         </div>
 
                 </section>
+<<<<<<< HEAD
 
                 <footer class="modal-card-foot">
                     <button id="createNewSong" class="button is-success" onclick="saveNewSong()">Save changes</button>
@@ -228,6 +308,129 @@
 
 
 
+<!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
+
+        <div id="editSongsModal" class="modal modal-fx-slideBottom">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+
+                <header class="modal-card-head">
+                    <p class="modal-card-title has-text-left">Edit a song in your top 10 list</p>
+                    <button class="delete" onclick="toggleEditSongsModal()" aria-label="close"></button>
+                </header>
+            
+                <section class="modal-card-body">
+
+                    <div class="content">
+
+                        <div class="columns">
+                            
+                            <div class="column">
+                                <div class="control">
+                                    <label for="ranking">Song Search:</label>
+                                    <input name="ranking" onInput="songEditFunction()" class="input is-medium" type="text" id="songEditSearch">
+                                </div>
+
+                                <table id="editedSearchingTable" style="display:none;" class="table is-striped is-narrow is-hoverable is-fullwidth">
+                                    <tr id="editSongRow1" onclick="editRow1ToInputs()" style="cursor:pointer;">
+                                        <td id="editSongPicRow1"><img src="" alt="Row 1 Art"></td>
+                                        <td id="editSongNameRow1">Song Name</td>
+                                        <td id="editSongArtistRow1">Artist Name</td>
+                                    </tr>
+                                    <tr id="editSongRow2" onclick="editRow2ToInputs()" style="cursor:pointer;">
+                                        <td id="editSongPicRow2"><img src="" alt="Row 2 Art"></td>
+                                        <td id="editSongNameRow2">Song Name</td>
+                                        <td id="editSongArtistRow2">Artist Name</td>
+                                    </tr>
+                                    <tr id="editSongRow3" onclick="editRow3ToInputs()" style="cursor:pointer;">
+                                        <td id="editSongPicRow3"><img src="" alt="Row 3 Art"></td>
+                                        <td id="editSongNameRow3">Song Name</td>
+                                        <td id="editSongArtistRow3">Artist Name</td>
+                                    </tr>
+                                    <tr id="editSongRow4" onclick="editRow4ToInputs()" style="cursor:pointer;">
+                                        <td id="editSongPicRow4"><img src="" alt="Row 4 Art"></td>
+                                        <td id="editSongNameRow4">Song Name</td>
+                                        <td id="editSongArtistRow4">Artist Name</td>
+                                    </tr>
+                                    <tr id="editSongRow5" onclick="editRow5ToInputs()" style="cursor:pointer;">
+                                        <td id="editSongPicRow5"><img src="" alt="Row 5 Art"></td>
+                                        <td id="editSongNameRow5">Song Name</td>
+                                        <td id="editSongArtistRow5">Artist Name</td>
+                                    </tr>
+                                </table>
+
+
+
+
+                            </div>
+
+                            <div class="column">
+                                <label for="songranking">Choose a ranking (*):</label>
+                                    <div class="select is-primary is-small">
+                                        <select name="songranking" id="editSongRanking">
+                                            <option value="0">1</option>
+                                            <option value="1">2</option>
+                                            <option value="2">3</option>
+                                            <option value="3">4</option>
+                                            <option value="4">5</option>
+                                            <option value="5">6</option>
+                                            <option value="6">7</option>
+                                            <option value="7">8</option>
+                                            <option value="8">9</option>
+                                            <option value="9">10</option>
+                                        </select>
+                                    </div>
+
+                                <div class="control">
+                                    <label for="songname">Song name (*):</label>
+                                    <input name="songname" class="input is-medium" type="text" id="editSongName">
+                                </div>
+
+                                <div class="control">
+                                    <label for="songartist">Artist name (*):</label>
+                                    <input name="songartist" class="input is-medium" type="text" id="editSongArtist">
+                                </div>
+
+                                <div class="control">
+                                    <label for="songcoverart">Song cover art (*):</label>
+                                    <input name="songcoverart" class="input is-medium" type="text" id="editSongCover">
+                                </div>
+=======
+
+                <footer class="modal-card-foot">
+                    <button id="createNewSong" class="button is-success" onclick="saveNewSong()">Save changes</button>
+                    <button class="button" onclick="toggleNewSongsModal()">Cancel</button>
+                </footer>
+            </div>
+        </div>
+>>>>>>> 3072cb88137d4a42dd8ca5b023ced0d99e2b2d61
+
+                                <div class="control">
+                                    <label for="songlink">Song link:</label>
+                                    <input name="songlink" class="input is-medium" type="text" id="editSongLink">
+                                </div>
+
+                                <div class="control">
+                                    <label for="songpreview">Song preview:</label>
+                                    <input name="songpreview" class="input is-medium" type="text" id="editSongPreview">
+                                </div>
+
+                                <div class="control">
+                                    <label for="songid">Deezer Song ID (optional):</label>
+                                    <input disabled name="songid" class="input is-medium" type="text" id="editSongDeezerId">
+                                </div>
+
+<<<<<<< HEAD
+=======
 <!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
 <!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
 <!-- EDIT SONG MODAL ----------------------------------------------------------------------------------------------->
@@ -340,6 +543,7 @@
                                     <input disabled name="songid" class="input is-medium" type="text" id="editSongDeezerId">
                                 </div>
 
+>>>>>>> 3072cb88137d4a42dd8ca5b023ced0d99e2b2d61
                             </div>
 
                         </div>
@@ -690,9 +894,90 @@
                 </footer>
             </div>
         </div>
+<<<<<<< HEAD
+=======
 
 
 
+<!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
+
+        <div id="editArtistsModal" class="modal modal-fx-slideBottom">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+
+                <header class="modal-card-head">
+                    <p class="modal-card-title has-text-left">Edit an artist in your top 10 list</p>
+                    <button class="delete" onclick="toggleEditArtistsModal()" aria-label="close"></button>
+                </header>
+            
+                <section class="modal-card-body">
+
+                    <div class="content">
+>>>>>>> 3072cb88137d4a42dd8ca5b023ced0d99e2b2d61
+
+                        <div class="columns">
+                            
+                            <div class="column">
+                                <div class="control">
+                                    <label for="ranking">Artist Search:</label>
+                                    <input name="ranking" onInput="artistEditFunction()" class="input is-medium" type="text" id="editArtistSearch">
+                                </div>
+
+                                <table id="editArtistSearchingTable" style="display:none;" class="table is-striped is-narrow is-hoverable is-fullwidth">
+                                    <tr id="editArtistRow1" onclick="editArtistRow1ToInputs()" style="cursor:pointer;">
+                                        <td id="editArtistPicRow1"><img src="" alt="Row 1 Art"></td>
+                                        <td id="editArtistNameRow1">Artist Name</td>
+                                    </tr>
+                                    <tr id="editArtistRow2" onclick="editArtistRow2ToInputs()" style="cursor:pointer;">
+                                        <td id="editArtistPicRow2"><img src="" alt="Row 2 Art"></td>
+                                        <td id="editArtistNameRow2">Artist Name</td>
+                                    </tr>
+                                    <tr id="editArtistRow3" onclick="editArtistRow3ToInputs()" style="cursor:pointer;">
+                                        <td id="editArtistPicRow3"><img src="" alt="Row 3 Art"></td>
+                                        <td id="editArtistNameRow3">Artist Name</td>
+                                    </tr>
+                                    <tr id="editArtistRow4" onclick="editArtistRow4ToInputs()" style="cursor:pointer;">
+                                        <td id="editArtistPicRow4"><img src="" alt="Row 4 Art"></td>
+                                        <td id="editArtistNameRow4">Artist Name</td>
+                                    </tr>
+                                    <tr id="editArtistRow5" onclick="editArtistRow5ToInputs()" style="cursor:pointer;">
+                                        <td id="editArtistPicRow5"><img src="" alt="Row 5 Art"></td>
+                                        <td id="editArtistNameRow5">Artist Name</td>
+                                    </tr>
+                                </table>
+
+
+
+
+                            </div>
+
+                            <div class="column">
+                                <label for="editartistranking">Choose a ranking (*):</label>
+                                    <div class="select is-primary is-small">
+                                        <select name="editartistranking" id="editArtistRanking">
+                                            <option value="0">1</option>
+                                            <option value="1">2</option>
+                                            <option value="2">3</option>
+                                            <option value="3">4</option>
+                                            <option value="4">5</option>
+                                            <option value="5">6</option>
+                                            <option value="6">7</option>
+                                            <option value="7">8</option>
+                                            <option value="8">9</option>
+                                            <option value="9">10</option>
+                                        </select>
+                                    </div>
+
+<<<<<<< HEAD
 <!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
 <!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
 <!-- EDIT ARTIST MODAL ----------------------------------------------------------------------------------------------->
@@ -747,7 +1032,35 @@
                                         <td id="editArtistNameRow5">Artist Name</td>
                                     </tr>
                                 </table>
+=======
+                                <div class="control">
+                                    <label for="editartistname">Artist name (*):</label>
+                                    <input name="editartistname" class="input is-medium" type="text" id="editArtistName">
+                                </div>
 
+                                <div class="control">
+                                    <label for="editartistpic">Artist image (*):</label>
+                                    <input name="editartistpic" class="input is-medium" type="text" id="editArtistPic">
+                                </div>
+
+                                <div class="control">
+                                    <label for="editartistlink">Artist link:</label>
+                                    <input name="editartistlink" class="input is-medium" type="text" id="editArtistLink">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                </section>
+>>>>>>> 3072cb88137d4a42dd8ca5b023ced0d99e2b2d61
+
+                <footer class="modal-card-foot">
+                    <button id="createNewArtist" class="button is-success" onclick="saveEditedArtist()">Save changes</button>
+                    <button class="button" onclick="toggleEditArtistsModal()">Cancel</button>
+                </footer>
+            </div>
+        </div>
 
 
 
@@ -804,4 +1117,8 @@
 
 
   
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 3072cb88137d4a42dd8ca5b023ced0d99e2b2d61
