@@ -111,28 +111,27 @@ let currentSongId = undefined;
 
 const getSongs = (googleUserId) => {
     const notesRef = firebase.database().ref(`users/${googleUserId}/songFolder`);
-    notesRef.on('value', (snapshot) => {
-        const data = snapshot.val();
-        renderSongDataAsHtml(data);
+    notesRef.orderByChild("songRanking").on('value', (snapshot) => {
+        renderDataAsHtml(snapshot);
     });
 };
 
-const renderSongDataAsHtml = (data) => {
+const renderDataAsHtml = (data) => {
     let cards = ``;
     songCount = 0;
     Object.keys(finalSongRankings).forEach(rank => finalSongRankings[rank] = false) 
-    for(const songItem in data) {
+
+    data.forEach((child) => {
         songCount++;
-        const song = data[songItem];
+        const song = child.val();
+        const songKey = child.key;
         finalSongRankings[`songRank${song.songRanking}`] = true; 
-        // For each note create an HTML card
-        console.log(songItem)
-        cards += createSongCard(song, songItem)
-    }
-    
+        cards += createSongCard(song, songKey)
+    })
+
     // Inject our string of HTML into our viewNotes.html page
     document.querySelector('#app').innerHTML = cards;
-
+    
     if(songCount>=10) {
         console.log("bye bye button")
         document.getElementById("addSongButton").style.display = "none";
@@ -757,30 +756,26 @@ let album5Artist;
 // CODE TO SHOW ALBUMS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
 // CODE TO SHOW ALBUMS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
 
-
 const getAlbums = (googleUserId) => {
-    console.log("Getting the albums")
     const notesRef = firebase.database().ref(`users/${googleUserId}/albumFolder`);
-    console.log(notesRef);
-    notesRef.on('value', (snapshot) => {
-    const data = snapshot.val();
-    renderAlbumDataAsHtml(data);
-  });
+    notesRef.orderByChild("albumRanking").on('value', (snapshot) => {
+        renderAlbumDataAsHtml(snapshot);
+    });
 };
 
 const renderAlbumDataAsHtml = (data) => {
-    console.log("Got the data, now putting it in the html")
     let cards = ``;
     albumCount = 0;
     Object.keys(finalAlbumRankings).forEach(rank => finalAlbumRankings[rank] = false) 
-    for(const albumItem in data) {
+
+        data.forEach((child) => {
         albumCount++;
-        const album = data[albumItem];
+        const album = child.val();
+        const albumKey = child.key;
         finalAlbumRankings[`albumRank${album.albumRanking}`] = true; 
-        // For each note create an HTML card
-        console.log(albumItem)
-        cards += createAlbumCard(album, albumItem)
-    };
+        cards += createAlbumCard(album, albumKey)
+    })
+
     // Inject our string of HTML into our viewNotes.html page
     document.querySelector('#appAlbum').innerHTML = cards;
 
@@ -1324,15 +1319,11 @@ let artist5Link;
 // CODE TO SHOW ALBUMS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
 // CODE TO SHOW ALBUMS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
 
-
 const getArtists = (googleUserId) => {
-    console.log("Getting the artists")
     const notesRef = firebase.database().ref(`users/${googleUserId}/artistFolder`);
-    console.log(notesRef);
-    notesRef.on('value', (snapshot) => {
-    const data = snapshot.val();
-    renderArtistDataAsHtml(data);
-  });
+    notesRef.orderByChild("artistRanking").on('value', (snapshot) => {
+        renderArtistDataAsHtml(snapshot);
+    });
 };
 
 const renderArtistDataAsHtml = (data) => {
@@ -1340,14 +1331,15 @@ const renderArtistDataAsHtml = (data) => {
     let cards = ``;
     artistCount = 0;
     Object.keys(finalArtistRankings).forEach(rank => finalArtistRankings[rank] = false) 
-    for(const artistItem in data) {
-        artistCount++;
-        const artist = data[artistItem];
-        finalArtistRankings[`artistRank${artist.artistRanking}`] = true; 
-        // For each note create an HTML card
-        console.log(artistItem)
-        cards += createArtistCard(artist, artistItem)
-    };
+    
+        data.forEach((child) => {
+            artistCount++;
+            const artist = child.val();
+            const artistKey = child.key;
+            finalArtistRankings[`artistRank${artist.artistRanking}`] = true; 
+            cards += createArtistCard(artist, artistKey);
+        });
+
     // Inject our string of HTML into our viewNotes.html page
     document.querySelector('#appArtist').innerHTML = cards;
 
