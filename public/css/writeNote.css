@@ -49,11 +49,17 @@ font-family: Raleway;
     padding-right: 0;
 }
 
+.card {
+    border-radius: 4px;
+}
+
 .songImage{
     height: 20em;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .songRanking {
@@ -61,6 +67,8 @@ font-family: Raleway;
     font-size: 2em;
     background-color: rgba(255, 255 , 255, 0.5);
     padding-left: 1em;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .songInfo {
@@ -97,7 +105,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border-bottom: 0.2px solid rgb(180, 180, 180);
+  border-bottom: 0.4px solid rgb(0, 62, 143);
   font-family: Raleway;
 }
 
@@ -116,4 +124,28 @@ li a {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: rgb(202, 202, 202);
+}
+
+
+/*CSS for site layout + responsiveness*/
+
+#paddingContainer {
+    padding: 0;
+    display: block;
+}
+
+#mainDiv {
+    display: flex;
+}
+
+#titleDiv {
+    text-align: center;
+    /*background-image: linear-gradient(to top right, navy , skyBlue);*/
+    width: 100%;
+    border-bottom: 3px solid rgb(0, 62, 143);
+}
+
+#contentDiv {
+    text-align: center;
+    margin: auto;
 }
