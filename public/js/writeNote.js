@@ -1391,10 +1391,6 @@ const saveEditedArtist = () => {
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 3072cb88137d4a42dd8ca5b023ced0d99e2b2d61
 // NEW ARTIST SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
 // NEW ARTIST SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
 // NEW ARTIST SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
@@ -1630,8 +1626,4 @@ const editArtistRow5ToInputs = () => {
     document.getElementById("editArtistName").value = artist5Name;
     document.getElementById("editArtistPic").value = artist5Pic;
     document.getElementById("editArtistLink").value = artist5Link;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 3072cb88137d4a42dd8ca5b023ced0d99e2b2d61
