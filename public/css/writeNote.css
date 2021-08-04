@@ -4,9 +4,15 @@
     width: 1200px;
 }
 
-.box{
+.button{
 
-    margin: 2px 2px 2px 2px!important;
-    border-radius: 0px;
+    margin-bottom: 20px!important;
+
+}
+
+.limit-message {
+    margin-bottom: 20px!important;
+    color: red;
+    font-weight: bold;
 }
 
