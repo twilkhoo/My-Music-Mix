@@ -794,7 +794,7 @@ const createAlbumCard = (album, albumId) => {
     return `
         <div class='column is-one-third'>
             <div class="card">
-                <div class="card-content songCard">
+                <div class="card-content songCard" >
                     <div class="content songImage" onclick="window.location = '${album.albumLink}'" style="background-image: url(${album.albumPic});">
                         <div class="songRanking">${parseInt(album.albumRanking) + 1}</div>
                     </div>
