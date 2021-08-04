@@ -23,9 +23,18 @@
 
         <script src="js/writeNote.js"></script>
         <script src="https://e-cdns-files.dzcdn.net/js/min/dz.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     </head>
     
     <body>
+
+        <ul>
+        <li><a href="#TopSongs">Top Songs</a></li>
+        <li><a href="#TopAlbums">Top Albums</a></li>
+        <li><a href="#TopArtists">Top Artists</a></li>
+        <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
+        </ul>
+
         <div id="dz-root"></div>
         <section class="hero is-fullheight">
             <div class="hero-body">
@@ -33,7 +42,7 @@
                 <!-- WELCOME HERO -->
                     <div class="section">
                         <h1 class="title is-1">My Music Mix</h1>
-                        <h1 class="title is-3">“Share the music you live for."</h1>
+                        <h1 class="title is-3">"Share the music you live for."</h1>
                     </div>
 
                     <div id="player"></div>
@@ -54,7 +63,7 @@
 
                         <!-- TOP 10 SONGS LIST -->
                         <div class="title is-3">
-                        <h1>Top 10 Songs</h1>
+                        <h1 id="TopSongs">Top Songs</h1>
                         </div> 
                         <div class="control">
                             <button onclick="toggleNewSongsModal()" id="addSongButton" class="button is-link has-text-weight-medium is-medium" data-target="newSongsModal">Add Song</button>
@@ -67,7 +76,7 @@
                         <!-- TOP ALBUMS LIST -->
                         <div class="section">
                             <div class="title is-3">
-                            <h1>Top 10 Albums</h1>
+                            <h1 id="TopAlbums">Top Albums</h1>
                             </div> 
                             <div class="control">
                                 <button onclick="toggleNewAlbumsModal()" id="addAlbumButton" class="button is-link has-text-weight-medium is-medium" data-target="newAlbumsModal">Add Album</button>
@@ -81,7 +90,7 @@
                         <!-- TOP ARTISTS LIST -->
                         <div class="section">
                             <div class="title is-3">
-                            <h1>Top 10 Artists</h1>
+                            <h1 id="TopArtists">Top Artists</h1>
                             </div> 
                             <div class="control">
                                 <button onclick="toggleNewArtistsModal()" id="addArtistButton" class="button is-link has-text-weight-medium is-medium" data-target="newArtistsModal">Add Artist</button>
@@ -99,22 +108,14 @@
         </section>
     </body>
 
-    <footer class="footer">
+    <footer class="footer" id="mainfooter">
         <div class="content has-text-centered">
-        <p>
+        <p id="mainfootertext">
             <strong>My Music Mix. </strong> No rights reserved. Powered by 
             <a href="https://developers.deezer.com/api" target="_blank">Deezer</a>.
         </p>
         </div>
     </footer>     
-
-
-
-
-
-
-
-
 
 
 
