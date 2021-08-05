@@ -12,7 +12,7 @@ h1{
 }
 
 h1:hover{
-    text-shadow: -7px 7px #2300be;
+    text-shadow: -4px 4px #003cff, 4px -4px #ff0080;
 }
 
 h3{
@@ -38,7 +38,9 @@ p{
     
 }
 
-
+.title{
+    text-shadow: 4px 4px #003cff, -3px -3px #ff0080;
+}
 
 
 .line-1{

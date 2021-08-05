@@ -28,7 +28,7 @@ font-family: Raleway;
 
 
 
-#addSongButton, #addAlbumButton, #addArtistButton{
+#addSongButton, #addAlbumButton, #addArtistButton, #addGenreButton{
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -95,12 +95,25 @@ font-family: Raleway;
 
 .songInfo {
     padding-bottom: 1.5em;
+    height: 4em;
+    overflow: scroll;
+}
+
+.genreInfo {
+    padding-bottom: 1.5em;
 }
 
 .songName{ 
     float: left;
     padding-left: 1em;
     display: flex;
+}
+
+.genreName {
+    float: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ff0080;
 }
 
 .songArtist{

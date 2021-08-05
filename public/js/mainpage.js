@@ -18,6 +18,7 @@ window.onload = (event) => {
             getSongs(googleUserId);
             getArtists(googleUserId);
             getAlbums(googleUserId);
+            getGenres(googleUserId);
         } else {
             // If not logged in, navigate back to login page.
             window.location = 'index.html'; 
@@ -202,7 +203,6 @@ const playSong = (id) => {
     currentSongId = id;
      
 };
-
 
 // SONG MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
 // SONG MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
@@ -1766,4 +1766,299 @@ const editArtistRow5ToInputs = () => {
     document.getElementById("editArtistName").value = artist5Name;
     document.getElementById("editArtistPic").value = artist5Pic;
     document.getElementById("editArtistLink").value = artist5Link;
+}
+
+
+// GLOBAL GENRE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GLOBAL GENRE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GLOBAL GENRE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GLOBAL GENRE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GLOBAL GENRE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GLOBAL GENRE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GLOBAL GENRE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GLOBAL GENRE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GLOBAL GENRE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GLOBAL GENRE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+let editedGenreId;
+let genreCount;
+
+let finalGenreRankings = { 
+    genreRank0: false,
+    genreRank1: false, 
+    genreRank2: false, 
+    genreRank3: false,
+    genreRank4: false,
+    genreRank5: false,
+    genreRank6: false,
+    genreRank7: false,
+    genreRank8: false,
+    genreRank9: false
+}
+
+let allGenres;
+
+let genre1Name;
+
+let genre2Name;
+
+let genre3Name;
+
+let genre4Name;
+
+let genre5Name;
+
+
+// CODE TO SHOW GENRES ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
+// CODE TO SHOW GENRES ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
+// CODE TO SHOW GENRES ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
+// CODE TO SHOW GENRES ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
+// CODE TO SHOW GENRES ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
+// CODE TO SHOW GENRES ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
+// CODE TO SHOW GENRES ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
+// CODE TO SHOW GENRES ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
+// CODE TO SHOW GENRES ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
+// CODE TO SHOW GENRES ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
+
+const getGenres = (googleUserId) => {
+    const notesRef = firebase.database().ref(`users/${googleUserId}/genreFolder`);
+    notesRef.orderByChild("genreRanking").on('value', (snapshot) => {
+        renderGenreDataAsHtml(snapshot);
+    });
+};
+
+const renderGenreDataAsHtml = (data) => {
+    console.log("Got the genre data, now putting it in the html")
+    let cards = ``;
+    genreCount = 0;
+    Object.keys(finalGenreRankings).forEach(rank => finalGenreRankings[rank] = false) 
+    
+        data.forEach((child) => {
+            genreCount++;
+            const genre = child.val();
+            const genreKey = child.key;
+            finalGenreRankings[`genreRank${genre.genreRanking}`] = true; 
+            cards += createGenreCard(genre, genreKey);
+        });
+
+    // Inject our string of HTML into our viewNotes.html page
+    document.querySelector('#appGenre').innerHTML = cards;
+
+    if(genreCount>=10) {
+        console.log("bye bye button")
+        document.getElementById("addGenreButton").style.display = "none";
+        document.getElementById("genreLimitMessage").style.display = "";
+    }
+    else {
+        document.getElementById("addGenreButton").style.display = "";
+        document.getElementById("genreLimitMessage").style.display = "none";
+    }
+};
+
+const createGenreCard = (genre, genreId) => {
+    return `
+        <div class='column is-one-third'>
+            <div class="card">
+                <div class="card-content songCard">
+                    <div class="songRanking">${parseInt(genre.genreRanking) + 1}</div>
+                    <div class="content genreInfo">
+                        <div class="genreName">${genre.genreName}</div>
+                    </div>
+                </div>
+
+                <footer class="card-footer">
+                    <a id="${genreId}" class="card-footer-item"
+                        onclick="deleteGenre('${genreId}')">
+                        Delete
+                    </a>
+                    <a class="card-footer-item"
+                        onclick="editGenre('${genreId}')" data-target="editGenresModal">
+                        Edit
+                    </a>
+                </footer>
+
+            </div>
+        </div>
+    `;
+};
+
+
+
+
+
+// GENRE MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
+// GENRE MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
+// GENRE MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
+// GENRE MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
+// GENRE MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
+// GENRE MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
+// GENRE MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
+// GENRE MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
+// GENRE MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
+// GENRE MODAL ACTIVATION BELOW ///////////////////////////////////////////////////////////////
+
+
+const deleteGenre = (genreId) => {
+    if (confirm('Are you sure you want to delete this genre?')) {
+        console.log(`Deleting note: ${genreId}`);
+        firebase.database().ref(`users/${googleUserId}/genreFolder/${genreId}`).remove();
+    }
+};
+
+const toggleEditGenresModal = () => {
+    for(let i = 0; i < 10; i++) { 
+        if(finalGenreRankings[`genreRank${i}`]) {
+            document.getElementById(`editGenreRankingFor${i}`).disabled = true;   
+        }
+        else {
+            document.getElementById(`editGenreRankingFor${i}`).disabled = false;
+        }
+    }
+
+    console.log("toggling the edit genres modal...")
+    document.querySelector("#editGenresModal").classList.toggle("is-active");
+};
+
+const toggleNewGenresModal = () => {
+    for(let i = 0; i < 10; i++) { 
+        if(finalGenreRankings[`genreRank${i}`]) {
+            document.getElementById(`genreRankingFor${i}`).disabled = true;   
+        }
+        else {
+            document.getElementById(`genreRankingFor${i}`).disabled = false;
+        }
+    }
+
+    console.log("toggling the new genres modal...")
+    document.querySelector("#newGenresModal").classList.toggle("is-active");
+
+    document.getElementById("genreName").value = "";
+    document.getElementById("genreRanking").value = "";
+};
+
+
+const saveNewGenre = () => {
+    const newGenreRanking = document.querySelector("#genreRanking").value;
+    const newGenreName = document.querySelector("#genreName").value;
+    
+    if (newGenreRanking === "") {
+        alert("You are missing an genre ranking.")
+    }
+    else if (newGenreName === "") {
+        alert("You are missing an genre name.")
+    }
+    else {
+        firebase.database().ref(`users/${googleUserId}/genreFolder`).push(
+            {
+                genreRanking: newGenreRanking,
+                genreName: newGenreName,
+            }
+        );
+        console.log("okay, bye")
+        toggleNewGenresModal();
+    }
+};
+
+
+const editGenre = (genreId) => {
+    console.log(`Editing note: ${genreId}`);
+    toggleEditGenresModal();
+    editedGenreId = genreId;
+
+    // Get the text from the note in the database
+    const notesRef = firebase.database().ref(`users/${googleUserId}/genreFolder/${genreId}`);
+    notesRef.on('value', snapshot => {
+        const data = snapshot.val();
+        console.log(data)
+ 
+        // Show the text from the database in an editable modal
+        document.querySelector("#editGenreRanking").value = data.genreRanking;
+        document.querySelector("#editGenreName").value = data.genreName;
+    });
+    // Save the updated text to the database
+ 
+};
+ 
+const saveEditedGenre = () => {
+    if (confirm('Are you sure you want to change this genre?')) {
+        // Save it!
+        const editedGenreRanking = document.querySelector("#editGenreRanking").value;
+        const editedGenreName = document.querySelector("#editGenreName").value;
+
+        if (editedGenreRanking === "") {
+            alert("You are missing an genre ranking.")
+        }
+        else if (editedGenreName === "") {
+            alert("You are missing an genre name.")
+        }
+        else {
+            firebase.database().ref(`users/${googleUserId}/genreFolder/${editedGenreId}`)
+                .update({
+                    genreRanking: editedGenreRanking,
+                    genreName: editedGenreName,
+                })
+            console.log('Thing was saved to the database.');
+            toggleEditGenresModal();
+        }
+    }
+    
+}
+
+
+
+
+
+// EDIT GENRE SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
+// EDIT GENRE SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
+// EDIT GENRE SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
+// EDIT GENRE SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
+// EDIT GENRE SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
+// EDIT GENRE SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
+// EDIT GENRE SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
+// EDIT GENRE SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
+// EDIT GENRE SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
+// EDIT GENRE SEARCH FUNCTIONALITY//////////////////////////////////////////////////////
+
+const addGenreRow1ToInputs = () => {
+    document.getElementById("genreName").value = genre1Name;
+}
+
+const addGenreRow2ToInputs = () => {
+    document.getElementById("genreName").value = genre2Name;
+}
+
+const addGenreRow3ToInputs = () => {
+    document.getElementById("genreName").value = genre3Name;
+}
+
+const addGenreRow4ToInputs = () => {
+    document.getElementById("genreName").value = genre4Name;
+}
+
+const addGenreRow5ToInputs = () => {
+    document.getElementById("genreName").value = genre5Name;
+}
+
+
+
+const editGenreRow1ToInputs = () => {
+    console.log("editing for 1")
+    document.getElementById("editGenreName").value = genre1Name;
+}
+
+const editGenreRow2ToInputs = () => {
+    document.getElementById("editGenreName").value = genre2Name;
+}
+
+const editGenreRow3ToInputs = () => {
+    document.getElementById("editGenreName").value = genre3Name;
+}
+
+const editGenreRow4ToInputs = () => {
+    document.getElementById("editGenreName").value = genre4Name;
+}
+
+const editGenreRow5ToInputs = () => {
+    document.getElementById("editGenreName").value = genre5Name;
 }
