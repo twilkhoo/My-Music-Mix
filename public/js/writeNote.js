@@ -1775,3 +1775,19 @@ const editArtistRow5ToInputs = () => {
     document.getElementById("editArtistPic").value = artist5Pic;
     document.getElementById("editArtistLink").value = artist5Link;
 }
+
+//BUTTON CODE
+var btn = $('#scrollbutton');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});

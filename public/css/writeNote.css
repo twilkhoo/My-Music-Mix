@@ -14,6 +14,14 @@ font-family: Raleway;
    color: white; 
 }
 
+#bigger {
+    font-size: 400%;
+}
+
+#notAsBig {
+    font-size: 300%;
+}
+
 #addSongButton, #addAlbumButton, #addArtistButton{
     font-family: 'Courier New', Courier, monospace;
 }
@@ -116,4 +124,42 @@ li a {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: rgb(202, 202, 202);
+}
+
+/* CSS FOR SCROLL BUTTON */
+#scrollbutton {
+  display: inline-block;
+  background-color: #FF9800;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s, 
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+#scrollbutton::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+#scrollbutton:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#scrollbutton:active {
+  background-color: #555;
+}
+#scrollbutton.show {
+  opacity: 1;
+  visibility: visible;
 }
