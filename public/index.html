@@ -3,22 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fire Notes</title>
+    <title>My Music Mix</title>
 
     <link rel="shortcut icon" type="image/jpg" href="https://image.flaticon.com/icons/png/512/752/752688.png"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-    <style type="text/css">
-      html,
-      body {
-          font-family: 'Open Sans';
-      }
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="css/index.css">
 
-      img {
-          padding: 5px;
-          border: 1px solid #ccc;
-      }
-    </style>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -29,24 +21,53 @@
   </head>
   <body>
 
+    <!-- <section class="hero is-fullheight is-default is-bold">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="columns is-centered">
+                    <div class="column is-6 is-offset-3">
+                        <div class="box">
+                            <h1 class="title is-2">
+                                my <b>music</b> mix
+                            </h1>
+                            <h2 class="subtitle is-4">
+                                Log in to create your music profile. 
+                            </h2>
+                            <br>
+                            <p class="has-text-centered">
+                                <a class="button is-medium is-info is-outlined" onclick="signIn()">
+                                    Sign In
+                                </a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
     <section class="hero is-fullheight is-default is-bold">
         <div class="hero-body">
             <div class="container has-text-centered">
-                <div class="columns is-vcentered">
-                    <div class="column is-6 is-offset-3">
-                        <h1 class="title is-2">
-                            My Music Mix
+                <div class="columns is-centered">
+                    <div class="column">
+
+                        <h1 class="title is-2 line-1 anim-typewriter">
+                            my music mix
                         </h1>
-                        <h2 class="subtitle is-4">
-                            Log in to create your music profile. 
-                        </h2>
+                        <h3 class="subtitle is-4">
+                            your music, your identity 
+                        </h3>
                         <br>
                         <p class="has-text-centered">
-                            <a class="button is-medium is-info is-outlined" onclick="signIn()">
-                                Sign In
-                            </a>
+                            <button class="button is-large" onclick="signIn()">
+                                <p>Login</p>
+                            </button>
                         </p>
                     </div>
+
                 </div>
             </div>
         </div>

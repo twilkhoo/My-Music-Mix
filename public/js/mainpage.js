@@ -111,25 +111,24 @@ let currentSongId = undefined;
 
 const getSongs = (googleUserId) => {
     const notesRef = firebase.database().ref(`users/${googleUserId}/songFolder`);
-    notesRef.on('value', (snapshot) => {
-        const data = snapshot.val();
-        renderSongDataAsHtml(data);
+    notesRef.orderByChild("songRanking").on('value', (snapshot) => {
+        renderDataAsHtml(snapshot);
     });
 };
 
-const renderSongDataAsHtml = (data) => {
+const renderDataAsHtml = (data) => {
     let cards = ``;
     songCount = 0;
     Object.keys(finalSongRankings).forEach(rank => finalSongRankings[rank] = false) 
-    for(const songItem in data) {
+
+    data.forEach((child) => {
         songCount++;
-        const song = data[songItem];
+        const song = child.val();
+        const songKey = child.key;
         finalSongRankings[`songRank${song.songRanking}`] = true; 
-        // For each note create an HTML card
-        console.log(songItem)
-        cards += createSongCard(song, songItem)
-    }
-    
+        cards += createSongCard(song, songKey)
+    })
+
     // Inject our string of HTML into our viewNotes.html page
     document.querySelector('#app').innerHTML = cards;
 
@@ -163,11 +162,11 @@ const createSongCard = (song, songId) => {
                 </div>
 
                 <footer class="card-footer">
-                    <a id="${songId}" href="#" class="card-footer-item"
+                    <a id="${songId}" class="card-footer-item"
                         onclick="deleteSong('${songId}')">
                         Delete
                     </a>
-                    <a href="#" class="card-footer-item"
+                    <a class="card-footer-item"
                         onclick="editSong('${songId}')" data-target="editSongsModal">
                         Edit
                     </a>
@@ -757,30 +756,26 @@ let album5Artist;
 // CODE TO SHOW ALBUMS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
 // CODE TO SHOW ALBUMS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
 
-
 const getAlbums = (googleUserId) => {
-    console.log("Getting the albums")
     const notesRef = firebase.database().ref(`users/${googleUserId}/albumFolder`);
-    console.log(notesRef);
-    notesRef.on('value', (snapshot) => {
-    const data = snapshot.val();
-    renderAlbumDataAsHtml(data);
-  });
+    notesRef.orderByChild("albumRanking").on('value', (snapshot) => {
+        renderAlbumDataAsHtml(snapshot);
+    });
 };
 
 const renderAlbumDataAsHtml = (data) => {
-    console.log("Got the data, now putting it in the html")
     let cards = ``;
     albumCount = 0;
     Object.keys(finalAlbumRankings).forEach(rank => finalAlbumRankings[rank] = false) 
-    for(const albumItem in data) {
+
+        data.forEach((child) => {
         albumCount++;
-        const album = data[albumItem];
+        const album = child.val();
+        const albumKey = child.key;
         finalAlbumRankings[`albumRank${album.albumRanking}`] = true; 
-        // For each note create an HTML card
-        console.log(albumItem)
-        cards += createAlbumCard(album, albumItem)
-    };
+        cards += createAlbumCard(album, albumKey)
+    })
+
     // Inject our string of HTML into our viewNotes.html page
     document.querySelector('#appAlbum').innerHTML = cards;
 
@@ -799,8 +794,8 @@ const createAlbumCard = (album, albumId) => {
     return `
         <div class='column is-one-third'>
             <div class="card">
-                <div class="card-content songCard">
-                    <div class="content songImage" onclick="window.location = '${album.albumLink}'" style="background-image: url(${album.albumPic});">
+                <div class="card-content songCard" >
+                    <div class="content songImage" onclick="window.open('${album.albumLink}', '_blank')" style="background-image: url(${album.albumPic});">
                         <div class="songRanking">${parseInt(album.albumRanking) + 1}</div>
                     </div>
                     <div class="content songInfo">
@@ -811,11 +806,11 @@ const createAlbumCard = (album, albumId) => {
                 </div>
 
                 <footer class="card-footer">
-                    <a id="${albumId}" href="#" class="card-footer-item"
+                    <a id="${albumId}" class="card-footer-item"
                         onclick="deleteAlbum('${albumId}')">
                         Delete
                     </a>
-                    <a href="#" class="card-footer-item"
+                    <a class="card-footer-item"
                         onclick="editAlbum('${albumId}')" data-target="editAlbumsModal">
                         Edit
                     </a>
@@ -1324,30 +1319,25 @@ let artist5Link;
 // CODE TO SHOW ALBUMS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
 // CODE TO SHOW ALBUMS ON PAGE /////////////////////////////////////////////////////////////////////////////////////////////
 
-
 const getArtists = (googleUserId) => {
-    console.log("Getting the artists")
     const notesRef = firebase.database().ref(`users/${googleUserId}/artistFolder`);
-    console.log(notesRef);
-    notesRef.on('value', (snapshot) => {
-    const data = snapshot.val();
-    renderArtistDataAsHtml(data);
-  });
+    notesRef.orderByChild("artistRanking").on('value', (snapshot) => {
+        renderArtistDataAsHtml(snapshot);
+    });
 };
 
 const renderArtistDataAsHtml = (data) => {
     console.log("Got the data, now putting it in the html")
     let cards = ``;
     artistCount = 0;
-    Object.keys(finalArtistRankings).forEach(rank => finalArtistRankings[rank] = false) 
-    for(const artistItem in data) {
-        artistCount++;
-        const artist = data[artistItem];
-        finalArtistRankings[`artistRank${artist.artistRanking}`] = true; 
-        // For each note create an HTML card
-        console.log(artistItem)
-        cards += createArtistCard(artist, artistItem)
-    };
+    Object.keys(finalArtistRankings).forEach(rank => finalArtistRankings[rank] = false)     
+        data.forEach((child) => {
+            artistCount++;
+            const artist = child.val();
+            const artistKey = child.key;
+            finalArtistRankings[`artistRank${artist.artistRanking}`] = true; 
+            cards += createArtistCard(artist, artistKey);
+        });
     // Inject our string of HTML into our viewNotes.html page
     document.querySelector('#appArtist').innerHTML = cards;
 
@@ -1367,7 +1357,7 @@ const createArtistCard = (artist, artistId) => {
         <div class='column is-one-third'>
             <div class="card">
                 <div class="card-content songCard">
-                    <div class="content songImage" onclick="window.location = '${artist.artistLink}'" style="background-image: url(${artist.artistPic});">
+                    <div class="content songImage" onclick="window.open('${artist.artistLink}', '_blank')"  style="background-image: url(${artist.artistPic});">
                         <div class="songRanking">${parseInt(artist.artistRanking) + 1}</div>
                     </div>
                     <div class="content songInfo">
@@ -1377,11 +1367,11 @@ const createArtistCard = (artist, artistId) => {
                 </div>
 
                 <footer class="card-footer">
-                    <a id="${artistId}" href="#" class="card-footer-item"
+                    <a id="${artistId}" class="card-footer-item"
                         onclick="deleteArtist('${artistId}')">
                         Delete
                     </a>
-                    <a href="#" class="card-footer-item"
+                    <a class="card-footer-item"
                         onclick="editArtist('${artistId}')" data-target="editArtistsModal">
                         Edit
                     </a>
@@ -1775,19 +1765,3 @@ const editArtistRow5ToInputs = () => {
     document.getElementById("editArtistPic").value = artist5Pic;
     document.getElementById("editArtistLink").value = artist5Link;
 }
-
-//BUTTON CODE
-var btn = $('#scrollbutton');
-
-$(window).scroll(function() {
-  if ($(window).scrollTop() > 300) {
-    btn.addClass('show');
-  } else {
-    btn.removeClass('show');
-  }
-});
-
-btn.on('click', function(e) {
-  e.preventDefault();
-  $('html, body').animate({scrollTop:0}, '300');
-});
