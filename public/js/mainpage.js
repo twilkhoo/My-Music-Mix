@@ -162,11 +162,11 @@ const createSongCard = (song, songId) => {
                 </div>
 
                 <footer class="card-footer">
-                    <a id="${songId}" href="#" class="card-footer-item"
+                    <a id="${songId}" class="card-footer-item"
                         onclick="deleteSong('${songId}')">
                         Delete
                     </a>
-                    <a href="#" class="card-footer-item"
+                    <a class="card-footer-item"
                         onclick="editSong('${songId}')" data-target="editSongsModal">
                         Edit
                     </a>
@@ -806,11 +806,11 @@ const createAlbumCard = (album, albumId) => {
                 </div>
 
                 <footer class="card-footer">
-                    <a id="${albumId}" href="#" class="card-footer-item"
+                    <a id="${albumId}" class="card-footer-item"
                         onclick="deleteAlbum('${albumId}')">
                         Delete
                     </a>
-                    <a href="#" class="card-footer-item"
+                    <a class="card-footer-item"
                         onclick="editAlbum('${albumId}')" data-target="editAlbumsModal">
                         Edit
                     </a>
@@ -1369,11 +1369,11 @@ const createArtistCard = (artist, artistId) => {
                 </div>
 
                 <footer class="card-footer">
-                    <a id="${artistId}" href="#" class="card-footer-item"
+                    <a id="${artistId}" class="card-footer-item"
                         onclick="deleteArtist('${artistId}')">
                         Delete
                     </a>
-                    <a href="#" class="card-footer-item"
+                    <a class="card-footer-item"
                         onclick="editArtist('${artistId}')" data-target="editArtistsModal">
                         Edit
                     </a>
