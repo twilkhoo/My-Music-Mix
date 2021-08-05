@@ -18,6 +18,15 @@ font-family: Raleway;
    color: white; 
 }
 
+#bigger {
+    font-size: 400%;
+}
+
+#notAsBig {
+    font-size: 300%;
+}
+
+
 .is-1{
     transition: 1s ease-in-out;
 }
