@@ -56,6 +56,7 @@
     <body>
 
         <ul>
+            <li><a href="#TopGenres">Top Genres</a></li>
             <li><a href="#TopArtists">Top Artists</a></li>
             <li><a href="#TopAlbums">Top Albums</a></li>
             <li><a href="#TopSongs">Top Songs</a></li>
@@ -88,6 +89,11 @@
 			                    height : 0,
 			                    onload : function(){console.log("Loaded player");}
                             }
+                        });
+
+                        DZ.Event.subscribe('track_end', function() {
+                            const img = document.querySelector("#" + `card_${currentSongId}`);
+                            img.src = "https://freepngimg.com/save/25569-play-button-transparent/1024x1024";
                         });
                     </script>
                 <div class="container has-text-centered" id="mainDiv"></div>
@@ -131,6 +137,20 @@
                             </div>
                             <div id="appArtist" class="columns is-multiline">
                                 <!-- Artist cards will render here -->
+                            </div>
+                        </div>
+
+                        <!-- TOP GENRES LIST -->
+                        <div class="section">
+                            <div class="title is-3">
+                            <h1 id="TopGenres">Top Genres</h1>
+                            </div> 
+                            <div class="control">
+                                <button onclick="toggleNewGenresModal()" id="addGenreButton" class="button is-link has-text-weight-medium is-medium" data-target="newGenresModal">Add Genre</button>
+                                <p class="limit-message" id="genreLimitMessage">Limit of 10 genres reached. Delete/edit a genre to add another.</p>
+                            </div>
+                            <div id="appGenre" class="columns is-multiline">
+                                <!-- Genre cards will render here -->
                             </div>
                         </div>
 
@@ -856,6 +876,66 @@
                             </div>
 
                         </div>
+
+
+<!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
+
+        <div id="editGenresModal" class="modal modal-fx-slideBottom">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+
+                <header class="modal-card-head">
+                    <p class="modal-card-title has-text-left">Edit an artist in your top 10 list</p>
+                    <button class="delete" onclick="toggleEditGenresModal()" aria-label="close"></button>
+                </header>
+            
+                <section class="modal-card-body">
+
+                    <div class="content">
+
+                        <div class="columns">
+
+                            <div class="column">
+                                <label for="editgenreranking">Choose a ranking (*):</label>
+                                    <div class="select is-primary is-small">
+                                        <select name="editgenreranking" id="editGenreRanking">
+                                            <option id="editGenreRankingFor0" value="0">1</option>
+                                            <option id="editGenreRankingFor1" value="1">2</option>
+                                            <option id="editGenreRankingFor2" value="2">3</option>
+                                            <option id="editGenreRankingFor3" value="3">4</option>
+                                            <option id="editGenreRankingFor4" value="4">5</option>
+                                            <option id="editGenreRankingFor5" value="5">6</option>
+                                            <option id="editGenreRankingFor6" value="6">7</option>
+                                            <option id="editGenreRankingFor7" value="7">8</option>
+                                            <option id="editGenreRankingFor8" value="8">9</option>
+                                            <option id="editGenreRankingFor9" value="9">10</option>
+                                        </select>
+                                    </div>
+
+                                <div class="control">
+                                    <label for="editgenrename">Genre name (*):</label>
+                                    <input name="editgenrename" class="input is-medium" type="text" id="editGenreName">
+                                </div>
+
+                            </div>
+
+                </section>
+
+                <footer class="modal-card-foot">
+                    <button id="createNewGenre" class="button is-success" onclick="saveEditedGenre()">Save changes</button>
+                    <button class="button" onclick="toggleEditGenresModal()">Cancel</button>
+                </footer>
+            </div>
+        </div>
 
                 </section>
 
