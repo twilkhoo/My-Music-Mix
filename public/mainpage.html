@@ -24,53 +24,25 @@
         <script src="js/mainpage.js"></script>
         <script src="https://e-cdns-files.dzcdn.net/js/min/dz.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     </head>
-
-    <style>
-        #btnScrollToTop {
-            position: fixed;
-            right: 10px;
-            bottom: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: red;
-            box-shadow: 0 0 10px black;
-            color: white;
-            border: none;
-            outline: none;
-            cursor: pointer;
-        }
-
-        #btnScrollToTop:active {
-            background: red;
-        }
-    </style>
     
     <body>
 
         <ul>
-
         <li><a href="#TopArtists">Top Artists</a></li>
         <li><a href="#TopAlbums">Top Albums</a></li>
         <li><a href="#TopSongs">Top Songs</a></li>
 
         <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
         </ul>
-                  
-        <button id="btnScrollToTop">
-            <i class="material-icons">arrow_upward</i>
-        </button>
 
         <div id="dz-root"></div>
         <section class="hero is-fullheight">
             <div class="hero-body" id="paddingContainer">
                                 <!-- WELCOME HERO -->
                     <div class="section" id="titleDiv">
-                        <h1 class="title is-1 animate__animated animate__tada" id="bigger">My Music Mix</h1>
-                        <h1 class="title is-3" id="notAsBig">"Share the music you live for."</h1>
+                        <h1 class="title is-1">My Music Mix</h1>
+                        <h1 class="title is-3">"Share the music you live for."</h1>
                     </div>
 
                     <div id="player"></div>
@@ -86,7 +58,6 @@
                             }
                         });
                     </script>
-
                 <div class="container has-text-centered" id="mainDiv"></div>
 
                     <div class="section" id="contentDiv">
@@ -136,18 +107,6 @@
                 </div>
                 </div>
         </section>
-
-        <script>
-            const btnScrollToTop = document.querySelector("#btnScrollToTop");
-
-            btnScrollToTop.addEventListener("click", function () {
-                window.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: "smooth"
-                });
-            });
-        </script>
     </body>
 
     <footer class="footer" id="mainfooter">
