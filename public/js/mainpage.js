@@ -795,7 +795,7 @@ const createAlbumCard = (album, albumId) => {
         <div class='column is-one-third'>
             <div class="card">
                 <div class="card-content songCard" >
-                    <div class="content songImage" onclick="window.location = '${album.albumLink}'" style="background-image: url(${album.albumPic});">
+                    <div class="content songImage" onclick="window.open('${album.albumLink}', '_blank')" style="background-image: url(${album.albumPic});">
                         <div class="songRanking">${parseInt(album.albumRanking) + 1}</div>
                     </div>
                     <div class="content songInfo">
@@ -1359,7 +1359,7 @@ const createArtistCard = (artist, artistId) => {
         <div class='column is-one-third'>
             <div class="card">
                 <div class="card-content songCard">
-                    <div class="content songImage" onclick="window.location = '${artist.artistLink}'" style="background-image: url(${artist.artistPic});">
+                    <div class="content songImage" onclick="window.open('${artist.artistLink}', '_blank')"  style="background-image: url(${artist.artistPic});">
                         <div class="songRanking">${parseInt(artist.artistRanking) + 1}</div>
                     </div>
                     <div class="content songInfo">

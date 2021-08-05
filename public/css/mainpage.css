@@ -3,6 +3,10 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /*
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
 font-family: 'Courier New', Courier, monospace; 
@@ -14,17 +18,29 @@ font-family: Raleway;
    color: white; 
 }
 
+.is-1{
+    transition: 1s ease-in-out;
+}
+
+.is-1:hover {
+    text-shadow: -7px 7px #2300be;
+}
+
+
+
 #addSongButton, #addAlbumButton, #addArtistButton{
     font-family: 'Courier New', Courier, monospace;
 }
 
 #mainfooter{
- background-color: rgb(180, 180, 180);
- font-family: Raleway;
-}
-
-#mainfootertext{
+    background-color: rgb(13, 0, 83);
+    font-family: Raleway;
     color: white;
+    padding-bottom: 3rem;
+    transition: 1s ease-in-out;
+}
+#mainfooter:hover {
+    letter-spacing: 1px;
 }
 
 .modal-card, .modal-content {
@@ -51,6 +67,11 @@ font-family: Raleway;
 
 .card {
     border-radius: 4px;
+    transition: 1s ease-in-out;
+}
+.card:hover {
+  border-radius: 20px;
+  box-shadow: 0 0em 4em 1em rgb(10 10 255 / 50%), 0 0 0 1px rgb(10 10 10 / 2%);
 }
 
 .songImage{
@@ -60,6 +81,7 @@ font-family: Raleway;
     background-position: center;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    cursor:pointer;
 }
 
 .songRanking {
@@ -103,10 +125,10 @@ font-family: Raleway;
 ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 0; 
   overflow: hidden;
-  border-bottom: 0.4px solid rgb(0, 62, 143);
   font-family: Raleway;
+   background-color: rgb(13, 0, 83); 
 }
 
 li {
@@ -119,6 +141,7 @@ li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  transition: 1s ease-in-out;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -140,9 +163,9 @@ li a:hover {
 
 #titleDiv {
     text-align: center;
-    /*background-image: linear-gradient(to top right, navy , skyBlue);*/
+    background-image: linear-gradient(to bottom, rgb(13, 0, 83) , rgb(8, 0, 39));
     width: 100%;
-    border-bottom: 3px solid rgb(0, 62, 143);
+  /* background-color: rgb(13, 0, 83);  */
 }
 
 #contentDiv {
