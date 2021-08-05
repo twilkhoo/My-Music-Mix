@@ -56,11 +56,11 @@
     <body>
 
         <ul>
-        <li><a href="#TopArtists">Top Artists</a></li>
-        <li><a href="#TopAlbums">Top Albums</a></li>
-        <li><a href="#TopSongs">Top Songs</a></li>
-
-        <!-- <li style="float:right"><a class="active" href="#about">About</a></li> -->
+            <li><a href="#TopArtists">Top Artists</a></li>
+            <li><a href="#TopAlbums">Top Albums</a></li>
+            <li><a href="#TopSongs">Top Songs</a></li>
+            <!-- <li style="float: left" >Sign out</a></li> -->
+            <li style="float: left" onclick="firebase.auth().signOut()"><a href="">Sign out</a></li>
         </ul>
 
         <button id="btnScrollToTop">
