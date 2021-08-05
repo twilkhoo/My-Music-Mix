@@ -877,6 +877,78 @@
 
                         </div>
 
+                    </section>
+
+                <footer class="modal-card-foot">
+                    <button id="createNewArtist" class="button is-success" onclick="saveEditedArtist()">Save changes</button>
+                    <button class="button" onclick="toggleEditArtistsModal()">Cancel</button>
+                </footer>
+            </div>
+        </div>
+
+<!-- ADD GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD GENRE MODAL ----------------------------------------------------------------------------------------------->
+<!-- ADD GENRE MODAL ----------------------------------------------------------------------------------------------->
+
+        <!--New Genre Modal-->
+
+        <div id="newGenresModal" class="modal modal-fx-slideBottom">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+
+                <header class="modal-card-head">
+                    <p class="modal-card-title has-text-left">Add a genre to your top 10 list</p>
+                    <button class="delete" onclick="toggleNewGenresModal()" aria-label="close"></button>
+                </header>
+
+                <section class="modal-card-body">
+
+                    <div class="content">
+
+                        <div class="columns">
+
+                            <div class="column">
+                                <label for="genreranking">Choose a ranking (*):</label>
+                                    <div class="select is-primary is-small">
+                                        <select name="genreranking" id="genreRanking">
+                                            <option id="genreRankingFor0" value="0">1</option>
+                                            <option id="genreRankingFor1" value="1">2</option>
+                                            <option id="genreRankingFor2" value="2">3</option>
+                                            <option id="genreRankingFor3" value="3">4</option>
+                                            <option id="genreRankingFor4" value="4">5</option>
+                                            <option id="genreRankingFor5" value="5">6</option>
+                                            <option id="genreRankingFor6" value="6">7</option>
+                                            <option id="genreRankingFor7" value="7">8</option>
+                                            <option id="genreRankingFor8" value="8">9</option>
+                                            <option id="genreRankingFor9" value="9">10</option>
+                                        </select>
+                                    </div>
+
+                                <div class="control">
+                                    <label for="genrename">Genre name (*):</label>
+                                    <input name="genrename" class="input is-medium" type="text" id="genreName">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                </section>
+
+                <footer class="modal-card-foot">
+                    <button id="createNewGenre" class="button is-success" onclick="saveNewGenre()">Save changes</button>
+                    <button class="button" onclick="toggleNewGenresModal()">Cancel</button>
+                </footer>
+            </div>
+        </div>
+
 
 <!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
 <!-- EDIT GENRE MODAL ----------------------------------------------------------------------------------------------->
@@ -933,15 +1005,6 @@
                 <footer class="modal-card-foot">
                     <button id="createNewGenre" class="button is-success" onclick="saveEditedGenre()">Save changes</button>
                     <button class="button" onclick="toggleEditGenresModal()">Cancel</button>
-                </footer>
-            </div>
-        </div>
-
-                </section>
-
-                <footer class="modal-card-foot">
-                    <button id="createNewArtist" class="button is-success" onclick="saveEditedArtist()">Save changes</button>
-                    <button class="button" onclick="toggleEditArtistsModal()">Cancel</button>
                 </footer>
             </div>
         </div>
