@@ -18,15 +18,6 @@ font-family: Raleway;
    color: white; 
 }
 
-
-#bigger {
-    font-size: 400%;
-}
-
-#notAsBig {
-    font-size: 300%;
-}
-
 .is-1{
     transition: 1s ease-in-out;
 }
@@ -34,6 +25,7 @@ font-family: Raleway;
 .is-1:hover {
     text-shadow: -7px 7px #2300be;
 }
+
 
 
 #addSongButton, #addAlbumButton, #addArtistButton{
@@ -136,7 +128,7 @@ ul {
   padding: 0; 
   overflow: hidden;
   font-family: Raleway;
-  background-color: rgb(13, 0, 83); 
+   background-color: rgb(13, 0, 83); 
 }
 
 li {
@@ -157,42 +149,6 @@ li a:hover {
   background-color: rgb(202, 202, 202);
 }
 
-/* CSS FOR SCROLL BUTTON */
-#scrollbutton {
-  display: inline-block;
-  background-color: #FF9800;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  border-radius: 4px;
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  transition: background-color .3s, 
-    opacity .5s, visibility .5s;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 1000;
-}
-#scrollbutton::after {
-  content: "\f077";
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 2em;
-  line-height: 50px;
-  color: #fff;
-}
-#scrollbutton:hover {
-  cursor: pointer;
-  background-color: #333;
-}
-#scrollbutton:active {
-  background-color: #555;
-}
-#scrollbutton.show {
-  opacity: 1;
-  visibility: visible;
 
 /*CSS for site layout + responsiveness*/
 
