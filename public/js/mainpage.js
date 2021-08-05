@@ -131,7 +131,7 @@ const renderDataAsHtml = (data) => {
 
     // Inject our string of HTML into our viewNotes.html page
     document.querySelector('#app').innerHTML = cards;
-
+    
     if(songCount>=10) {
         console.log("bye bye button")
         document.getElementById("addSongButton").style.display = "none";
@@ -1330,7 +1330,8 @@ const renderArtistDataAsHtml = (data) => {
     console.log("Got the data, now putting it in the html")
     let cards = ``;
     artistCount = 0;
-    Object.keys(finalArtistRankings).forEach(rank => finalArtistRankings[rank] = false)     
+    Object.keys(finalArtistRankings).forEach(rank => finalArtistRankings[rank] = false) 
+    
         data.forEach((child) => {
             artistCount++;
             const artist = child.val();
@@ -1338,6 +1339,7 @@ const renderArtistDataAsHtml = (data) => {
             finalArtistRankings[`artistRank${artist.artistRanking}`] = true; 
             cards += createArtistCard(artist, artistKey);
         });
+
     // Inject our string of HTML into our viewNotes.html page
     document.querySelector('#appArtist').innerHTML = cards;
 
